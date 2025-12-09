@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE Flashcards - CS 5/7-328 Software Engineering</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">📚 SE Flashcards</h1>
+                <p class="subtitle">CS 5/7-328 Software Engineering - Fall 2025</p>
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" class="btn btn-icon" title="Toggle theme">
+                    <span class="icon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Deck Selection View -->
+            <section id="deck-selection" class="view active">
+                <div class="view-header">
+                    <h2>Select a Topic</h2>
+                    <p class="view-description">Choose a deck to start studying</p>
+                </div>
+                
+                <div class="deck-filters">
+                    <button class="filter-btn active" data-filter="all">All Topics</button>
+                    <button class="filter-btn" data-filter="process">Process</button>
+                    <button class="filter-btn" data-filter="requirements">Requirements</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                    <button class="filter-btn" data-filter="architecture">Architecture</button>
+                    <button class="filter-btn" data-filter="patterns">Patterns</button>
+                    <button class="filter-btn" data-filter="testing">Testing</button>
+                    <button class="filter-btn" data-filter="devops">DevOps</button>
+                </div>
+
+                <div class="decks-grid" id="decks-container">
+                    <!-- Decks will be populated dynamically -->
+                </div>
+
+                <!-- Progress Overview -->
+                <div class="progress-overview">
+                    <h3>📊 Overall Progress</h3>
+                    <div class="progress-stats">
+                        <div class="stat">
+                            <span class="stat-value" id="total-cards">0</span>
+                            <span class="stat-label">Total Cards</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="cards-studied">0</span>
+                            <span class="stat-label">Cards Studied</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="cards-mastered">0</span>
+                            <span class="stat-label">Cards Mastered</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="study-sessions">0</span>
+                            <span class="stat-label">Study Sessions</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="overall-progress"></div>
+                    </div>
+                    <button class="btn btn-secondary" id="reset-progress-btn">Reset All Progress</button>
+                </div>
+            </section>
+
+            <!-- Study Mode Selection -->
+            <section id="mode-selection" class="view">
+                <div class="view-header">
+                    <button class="btn btn-back" id="back-to-decks">← Back to Decks</button>
+                    <h2 id="selected-deck-title">Selected Deck</h2>
+                    <p class="view-description" id="selected-deck-description"></p>
+                </div>
+
+                <div class="deck-stats" id="deck-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="deck-total">0</span>
+                        <span class="stat-label">Total Cards</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="deck-new">0</span>
+                        <span class="stat-label">New</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="deck-learning">0</span>
+                        <span class="stat-label">Learning</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="deck-mastered">0</span>
+                        <span class="stat-label">Mastered</span>
+                    </div>
+                </div>
+
+                <div class="mode-options">
+                    <div class="mode-card" data-mode="study">
+                        <span class="mode-icon">📖</span>
+                        <h3>Study Mode</h3>
+                        <p>Go through cards in order with flip animations</p>
+                    </div>
+                    <div class="mode-card" data-mode="shuffle">
+                        <span class="mode-icon">🔀</span>
+                        <h3>Shuffle Mode</h3>
+                        <p>Randomize card order for varied practice</p>
+                    </div>
+                    <div class="mode-card" data-mode="quiz">
+                        <span class="mode-icon">✍️</span>
+                        <h3>Quiz Mode</h3>
+                        <p>Test yourself and track confidence</p>
+                    </div>
+                    <div class="mode-card" data-mode="review">
+                        <span class="mode-icon">🔄</span>
+                        <h3>Review Weak Cards</h3>
+                        <p>Focus on cards you're still learning</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Flashcard Study View -->
+            <section id="study-view" class="view">
+                <div class="study-header">
+                    <button class="btn btn-back" id="back-to-modes">← Back</button>
+                    <div class="study-progress">
+                        <span id="current-card-num">1</span> / <span id="total-cards-num">0</span>
+                    </div>
+                    <div class="study-controls-header">
+                        <button class="btn btn-icon" id="bookmark-btn" title="Bookmark">⭐</button>
+                        <button class="btn btn-icon" id="shuffle-current-btn" title="Shuffle">🔀</button>
+                    </div>
+                </div>
+
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="card-category" id="card-category"></div>
+                                <div class="card-content" id="card-question"></div>
+                                <div class="card-hint">Click or press Space to flip</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="card-content" id="card-answer"></div>
+                                <div class="card-details" id="card-details"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="study-controls">
+                    <button class="btn btn-nav" id="prev-card" title="Previous (← or A)">
+                        <span>←</span> Previous
+                    </button>
+                    <div class="confidence-buttons" id="confidence-btns">
+                        <button class="btn btn-confidence btn-again" data-confidence="again" title="Press 1">
+                            Again
+                        </button>
+                        <button class="btn btn-confidence btn-hard" data-confidence="hard" title="Press 2">
+                            Hard
+                        </button>
+                        <button class="btn btn-confidence btn-good" data-confidence="good" title="Press 3">
+                            Good
+                        </button>
+                        <button class="btn btn-confidence btn-easy" data-confidence="easy" title="Press 4">
+                            Easy
+                        </button>
+                    </div>
+                    <button class="btn btn-nav" id="next-card" title="Next (→ or D)">
+                        Next <span>→</span>
+                    </button>
+                </div>
+
+                <div class="progress-bar-container study-progress-bar">
+                    <div class="progress-bar" id="study-progress-bar"></div>
+                </div>
+            </section>
+
+            <!-- Session Complete View -->
+            <section id="session-complete" class="view">
+                <div class="complete-container">
+                    <div class="complete-icon">🎉</div>
+                    <h2>Session Complete!</h2>
+                    <div class="session-stats">
+                        <div class="stat">
+                            <span class="stat-value" id="session-total">0</span>
+                            <span class="stat-label">Cards Reviewed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="session-easy">0</span>
+                            <span class="stat-label">Easy</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="session-good">0</span>
+                            <span class="stat-label">Good</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="session-hard">0</span>
+                            <span class="stat-label">Hard</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="session-again">0</span>
+                            <span class="stat-label">Again</span>
+                        </div>
+                    </div>
+                    <div class="complete-actions">
+                        <button class="btn btn-primary" id="study-again">Study Again</button>
+                        <button class="btn btn-secondary" id="review-mistakes">Review Mistakes</button>
+                        <button class="btn btn-secondary" id="back-home">Back to Home</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>SMU CS 5/7-328 Software Engineering - Study Aid</p>
+            <div class="keyboard-hints">
+                <span><kbd>Space</kbd> Flip</span>
+                <span><kbd>←</kbd><kbd>→</kbd> Navigate</span>
+                <span><kbd>1-4</kbd> Rate</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+{
+  "id": "requirements",
+  "title": "Requirements Engineering",
+  "description": "Requirements elicitation, envisioning, elaboration, use cases, and user stories",
+  "category": "requirements",
+  "cards": [
+    {
+      "question": "What are the three levels of the Requirements Pyramid from abstract to concrete?",
+      "answer": "1) Needs (Problem Domain) - lack of something essential/useful, 2) Features (Solution Domain) - services that address user needs, 3) Software Requirements - specific behavior/properties to deliver a feature.",
+      "details": "Example: Need = Ability to call for help from community. Feature = Outsource a job. Requirement = User can publish a job, accept applications, select candidate, sign contract, close job when done.",
+      "category": "Requirements Fundamentals"
+    },
+    {
+      "question": "What is the difference between Functional Requirements (FRs) and Non-Functional Requirements (NFRs)?",
+      "answer": "Functional Requirements = Behaviors the system should SUPPORT (what it does). Non-Functional Requirements = Properties the system should SATISFY (how well it does it - quality attributes).",
+      "details": "FR Example: User can search for papers on a topic. NFR Examples: Performance (response time < 2 sec), Security (data encryption), Usability (accessible interface), Reliability (99.9% uptime).",
+      "category": "Requirements Types"
+    },
+    {
+      "question": "What are the main requirements elicitation techniques?",
+      "answer": "Interview, Observation, Contextual Inquiry, Survey, Workshop, Prototyping.",
+      "details": "Goal: Identify stakeholder groups and elicit their needs. Most elicitation techniques are also validation techniques that can be used throughout the project to validate we're defining the right system.",
+      "category": "Elicitation"
+    },
+    {
+      "question": "What activities are involved in Requirements Envisioning?",
+      "answer": "1) Create vision statement, 2) Create initial feature list, 3) Create initial models (use case diagram, conceptual domain), 4) Define high-level FRs and NFRs, 5) Validate with stakeholders, 6) Perform initial planning.",
+      "details": "Goal: Define system's vision and scope. Output includes roadmap with releases, prototypes for validation, and release backlog.",
+      "category": "Envisioning"
+    },
+    {
+      "question": "What is a Use Case and what are its components?",
+      "answer": "A use case describes a specific way an actor interacts with the system to achieve a goal. Components: Actor, Use Case (oval), System Boundary, Associations between actors and use cases.",
+      "details": "Use case diagram provides visual representation. Use case specification includes: Name, Brief Description, Basic Flow (main success scenario), Alternative Flows (error paths), Preconditions, Postconditions.",
+      "category": "Use Cases"
+    },
+    {
+      "question": "How do you express a Non-Functional Requirement as both a Shall Statement and a User Story?",
+      "answer": "Shall Statement: 'The system shall respond to a request within 2 secs.' User Story: 'As a User, I want the system to respond to my requests within 2 secs so that I can work efficiently.'",
+      "details": "Both formats work for NFRs. The Shall Statement is more formal/traditional. The User Story format maintains consistency with Agile practices and emphasizes user value.",
+      "category": "NFR Specification"
+    },
+    {
+      "question": "What is Just-in-Time Requirements Elaboration?",
+      "answer": "Elaborating requirements to detailed specifications only when they're about to be implemented, not all upfront. Follows the principle of deferring decisions until the 'last responsible moment'.",
+      "details": "For each release, elaborate high-level requirements into detailed specifications. For current sprint, elaborate fully. For future sprints, keep at higher level. This supports Agile's adaptive planning and reduces wasted effort on requirements that may change.",
+      "category": "Elaboration"
+    },
+    {
+      "question": "What should a complete Use Case Specification include?",
+      "answer": "Basic Flow (main success scenario) and at least one Alternative Flow (error paths/exceptions). Should detail step-by-step what happens.",
+      "details": "Example Basic Flow: 1) System displays functionality, 2) Student selects create schedule, 3) System retrieves course offerings, 4) Student selects courses, 5) System validates prerequisites, 6) System displays completed schedule. Alternative flows handle errors and edge cases.",
+      "category": "Use Cases"
+    },
+    {
+      "question": "What are Acceptance Criteria and why are they important?",
+      "answer": "Acceptance Criteria are conditions that must be met for a user story to be accepted as complete. They define 'done' and enable testing.",
+      "details": "Good acceptance criteria are: Specific, Measurable, Achievable, Relevant, Testable. Example: 'Search results display within 2 seconds', 'User can filter by date and author', 'Minimum 10 results shown per page'. Without clear acceptance criteria, stories cannot be properly tested or completed.",
+      "category": "User Stories"
+    },
+    {
+      "question": "What's the relationship between Requirements Engineering and other SE disciplines?",
+      "answer": "Requirements Engineering feeds into and receives feedback from Project Management, Testing, and Design & Implementation. It's central to all other activities.",
+      "details": "Project Management uses requirements to plan and track. Testing validates requirements are met. Design/Implementation realizes requirements. The flow is bidirectional - findings in later phases may reveal requirements issues.",
+      "category": "Requirements Fundamentals"
+    },
+    {
+      "question": "How do you convert a Need into a User Story?",
+      "answer": "Identify the user role, the feature/action they want, and the business value it provides. Format: 'As a [role], I want [action] so that [value]'.",
+      "details": "Example: Need = Connect SMU with local industry. Feature = Research collaboration matching. User Story: 'As a faculty member, I want to find local companies seeking research collaboration so that I can establish industry partnerships.' The 'so that' clause is critical for understanding value.",
+      "category": "User Stories"
+    },
+    {
+      "question": "What makes prototypes effective validation tools in requirements envisioning?",
+      "answer": "Prototypes (especially UI mockups with flow) give stakeholders something concrete to react to, revealing misunderstandings early before significant development investment.",
+      "details": "Types: Paper prototypes, Wireframes, Interactive mockups. Benefits: Clarify requirements, validate understanding, enable early feedback, reduce rework. Key: Prototypes are for validation, not production code.",
+      "category": "Validation"
+    },
+    {
+      "question": "What is a Release Roadmap and what does it contain?",
+      "answer": "A Release Roadmap shows planned releases over time, each with a Theme and associated Use Cases/Features to be delivered.",
+      "details": "Example: Release 1 (Feb) - Theme: Launch Community - Use Cases: Join Community, Share Status. Release 2 (Mar) - Theme: Enhance Communication - Use Cases: Make Chat, Search. This provides high-level planning while allowing detailed planning to happen just-in-time for each release.",
+      "category": "Planning"
+    }
+  ]
+}

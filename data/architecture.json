@@ -1,0 +1,98 @@
+{
+  "id": "architecture",
+  "title": "Software Architecture",
+  "description": "Architecture fundamentals, views, documentation, and architectural decision-making",
+  "category": "architecture",
+  "cards": [
+    {
+      "question": "What is Software Architecture and how does it differ from design?",
+      "answer": "Architecture: High-level structure of system - major components, their relationships, and principles governing design/evolution. Design: Lower-level, detailed decisions within architectural constraints.",
+      "details": "Architecture = strategic decisions affecting whole system, hard to change later. Design = tactical decisions within a component. Architecture concerns: Component boundaries, communication patterns, technology choices, quality attribute tradeoffs.",
+      "category": "Fundamentals"
+    },
+    {
+      "question": "What are the key responsibilities of a Software Architect?",
+      "answer": "1) Define system structure and major components. 2) Make technology decisions. 3) Ensure quality attributes are achievable. 4) Communicate architecture to stakeholders. 5) Manage technical risk.",
+      "details": "Architect bridges business and technical concerns. Must understand both requirements AND implementation constraints. Documents architecture decisions and rationale. Reviews designs for architectural conformance. Mentors developers on architectural patterns.",
+      "category": "Fundamentals"
+    },
+    {
+      "question": "What is the 4+1 View Model of architecture?",
+      "answer": "Four views plus scenarios: Logical (functionality), Process (runtime behavior), Development (code organization), Physical (deployment). Scenarios/Use Cases connect all views.",
+      "details": "Logical View: Classes, packages, interfaces (for end-users). Process View: Threads, processes, concurrency (for integrators). Development View: Source code organization, modules (for developers). Physical View: Hardware, networks, deployment (for system engineers). Use Cases validate all views work together.",
+      "category": "Architecture Views"
+    },
+    {
+      "question": "What are Architecture Decision Records (ADRs) and why use them?",
+      "answer": "ADRs document significant architectural decisions: context, decision, consequences. Why: Captures rationale for future reference, enables informed reversal, onboards new team members.",
+      "details": "ADR structure: Title, Status (proposed/accepted/deprecated), Context (problem), Decision (choice made), Consequences (tradeoffs). Store with code in version control. Examples: 'Use PostgreSQL for persistence', 'Adopt microservices architecture'.",
+      "category": "Documentation"
+    },
+    {
+      "question": "What is the relationship between architecture and quality attributes?",
+      "answer": "Architecture is the primary determinant of quality attributes (performance, scalability, security, maintainability). Architectural decisions enable or constrain achievable quality levels.",
+      "details": "Quality attributes often conflict - can't maximize all. Architecture makes tradeoffs explicit. Example: Microservices improve scalability/deployability but add complexity/latency. Security measures may impact performance. Document tradeoffs in ADRs.",
+      "category": "Quality Attributes"
+    },
+    {
+      "question": "What is technical debt and how does it relate to architecture?",
+      "answer": "Technical debt: Implied cost of future rework caused by choosing easy/fast solutions over better approaches. Architectural debt is most expensive - affects entire system.",
+      "details": "Types: Intentional (known shortcut for deadline), Unintentional (poor decisions). Consequences: Slower development, more bugs, harder to change. Managing: Track debt, pay it down incrementally, avoid architectural debt. Communicate debt to business stakeholders.",
+      "category": "Architecture Management"
+    },
+    {
+      "question": "What factors influence architectural decisions?",
+      "answer": "1) Functional requirements (what system does). 2) Quality attributes (how well). 3) Constraints (technology, budget, team skills). 4) Organizational factors (Conway's Law). 5) Business context (time to market, scalability needs).",
+      "details": "Conway's Law: System structure mirrors organization structure. Consider: Team size/distribution, existing systems to integrate, regulatory requirements, expected change areas, operational environment. No 'best' architecture - depends on context.",
+      "category": "Decision Making"
+    },
+    {
+      "question": "What is the difference between layered and tiered architecture?",
+      "answer": "Layers: Logical separation of concerns (presentation, business, data). Tiers: Physical separation/deployment (client, server, database). Layers can be deployed on same or different tiers.",
+      "details": "3-Layer: Presentation, Business Logic, Data Access. 3-Tier: Client, Application Server, Database Server. Layers are about code organization. Tiers are about deployment topology. Web app might be 3-layer but 2-tier (client browser + server with all layers).",
+      "category": "Architecture Concepts"
+    },
+    {
+      "question": "How do you evaluate an architecture?",
+      "answer": "Methods: Architecture Tradeoff Analysis Method (ATAM), Software Architecture Analysis Method (SAAM). Evaluate against: Quality attribute scenarios, stakeholder concerns, design principles.",
+      "details": "ATAM process: Present architecture, identify quality attribute goals, analyze scenarios, identify sensitivity/tradeoff points. Look for risks (decisions that may not achieve goals) and non-risks (sound decisions). Document findings and recommendations.",
+      "category": "Evaluation"
+    },
+    {
+      "question": "What is architectural erosion and how do you prevent it?",
+      "answer": "Erosion: Gap between intended and actual architecture grows over time as developers make decisions that violate architectural rules. Prevention: Automated checks, code reviews, architectural fitness functions.",
+      "details": "Causes: Pressure to ship, lack of architecture knowledge, changing requirements. Fitness functions: Tests that check architectural rules (dependency constraints, layer violations). Tools: ArchUnit, Structure101, SonarQube. Regular architecture reviews help.",
+      "category": "Architecture Management"
+    },
+    {
+      "question": "What is a component in software architecture?",
+      "answer": "Component: Modular, replaceable unit with well-defined interfaces. Encapsulates implementation, exposes services through interfaces, can be independently deployed/developed.",
+      "details": "Components interact through interfaces (provided) and dependencies (required). Good components: High cohesion internally, low coupling externally, clear contracts. Examples: Authentication module, payment processor, search service. Components at different granularities.",
+      "category": "Architecture Concepts"
+    },
+    {
+      "question": "What is the role of interfaces in architecture?",
+      "answer": "Interfaces define contracts between components: what services are provided, expected inputs/outputs, quality guarantees. Enable: Loose coupling, substitutability, parallel development, testing.",
+      "details": "Interface types: API (programmatic), Protocol (communication), File format (data exchange). Good interfaces: Stable, well-documented, versioned, backward compatible. Interface changes are architectural decisions - affect all clients.",
+      "category": "Architecture Concepts"
+    },
+    {
+      "question": "What is evolutionary architecture?",
+      "answer": "Evolutionary architecture supports incremental, guided change. Acknowledges requirements evolve - architecture must adapt without major rewrites. Key: Make decisions reversible when possible.",
+      "details": "Principles: Delay irreversible decisions, build for change, use fitness functions to protect important characteristics. Techniques: Microservices, feature toggles, branch by abstraction, strangler pattern. Opposite of Big Design Up Front (BDUF).",
+      "category": "Architecture Principles"
+    },
+    {
+      "question": "How do you document software architecture?",
+      "answer": "Document: Architecture views (4+1), component diagrams, deployment diagrams, ADRs, quality attribute scenarios, constraints. Audience-appropriate: Different views for different stakeholders.",
+      "details": "Good documentation: Current, concise, explains rationale (not just structure). Include: System context, container diagram, component diagram, deployment view, cross-cutting concerns. Tools: C4 model, UML, arc42 template. Living documentation preferred.",
+      "category": "Documentation"
+    },
+    {
+      "question": "What are cross-cutting concerns in architecture?",
+      "answer": "Cross-cutting concerns affect multiple components: logging, security, error handling, caching, transactions. Challenge: Can't be modularized into single component - spread across system.",
+      "details": "Handling approaches: Aspect-Oriented Programming (AOP), middleware/interceptors, frameworks with built-in support, shared libraries. Important to address at architecture level - ad-hoc handling leads to inconsistency. Document how each concern is addressed.",
+      "category": "Architecture Concepts"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "structural-patterns",
+  "title": "Structural Design Patterns",
+  "description": "Adapter, Bridge, Composite, Decorator, Facade, Flyweight, and Proxy patterns",
+  "category": "patterns",
+  "cards": [
+    {
+      "question": "What are Structural Design Patterns and what problem do they solve?",
+      "answer": "Structural patterns deal with how classes and objects are composed to form larger structures. They help ensure that when parts change, the entire structure doesn't need to change. Focus: Relationships between entities.",
+      "details": "GoF Structural Patterns: Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy. Key concerns: Interface compatibility, object composition, adding responsibilities dynamically, simplifying complex subsystems.",
+      "category": "Overview"
+    },
+    {
+      "question": "What is the Adapter Pattern and when do you use it?",
+      "answer": "Adapter: Convert interface of class into another interface clients expect. Allows incompatible interfaces to work together. Also called Wrapper.",
+      "details": "Structure: Target (interface client uses), Adapter (converts Adaptee to Target), Adaptee (existing interface to adapt). Types: Class adapter (inheritance), Object adapter (composition - preferred). Example: Legacy system integration, third-party library wrapping.",
+      "category": "Adapter"
+    },
+    {
+      "question": "What is the difference between Object Adapter and Class Adapter?",
+      "answer": "Object Adapter: Uses composition - adapter HAS-A adaptee. Class Adapter: Uses inheritance - adapter extends adaptee. Object adapter is more flexible (can adapt subclasses), works with multiple adaptees.",
+      "details": "Object Adapter: Can work at runtime, easier to test, more flexible. Class Adapter: No extra indirection, can override adaptee behavior, but limited to single inheritance. Modern practice favors object adapter (composition over inheritance).",
+      "category": "Adapter"
+    },
+    {
+      "question": "What is the Bridge Pattern?",
+      "answer": "Bridge: Decouple abstraction from implementation so both can vary independently. Separate 'what' (abstraction) from 'how' (implementation). Uses composition instead of inheritance.",
+      "details": "Structure: Abstraction (interface), RefinedAbstraction (extends abstraction), Implementor (interface for implementation), ConcreteImplementor. Example: Shape (abstraction) with Drawing API (implementor) - can have Circle drawn with OpenGL or DirectX.",
+      "category": "Bridge"
+    },
+    {
+      "question": "What is the difference between Bridge and Adapter patterns?",
+      "answer": "Adapter: Makes incompatible interfaces work together, applied AFTER design. Bridge: Designed upfront to let abstraction and implementation vary independently. Adapter fixes, Bridge prevents problems.",
+      "details": "Adapter: Retrofit existing code. Bridge: Plan for variation from start. Both use composition. Adapter typically wraps one object. Bridge separates abstraction hierarchy from implementation hierarchy. Bridge prevents class explosion from combining variants.",
+      "category": "Comparison"
+    },
+    {
+      "question": "What is the Composite Pattern?",
+      "answer": "Composite: Compose objects into tree structures, treat individual objects and compositions uniformly. Client uses same interface for leaf and composite nodes.",
+      "details": "Structure: Component (common interface), Leaf (primitive object), Composite (container with children). Example: File system (File=leaf, Directory=composite, both have getName(), getSize()). GUI elements, organization hierarchies. Enables recursive structures.",
+      "category": "Composite"
+    },
+    {
+      "question": "When should you use Composite Pattern?",
+      "answer": "Use when: Need tree structure of objects, want clients to treat compositions and individuals uniformly, structure can be arbitrarily complex.",
+      "details": "Benefits: Simplifies client code (no type checking), easy to add new component types. Tradeoffs: Can make design too general, hard to restrict composite contents. Common in GUI frameworks (panels containing buttons/panels), expression trees, organization charts.",
+      "category": "Composite"
+    },
+    {
+      "question": "What is the Decorator Pattern?",
+      "answer": "Decorator: Attach additional responsibilities to object dynamically. Alternative to subclassing for extending functionality. Wraps object with same interface, adds behavior.",
+      "details": "Structure: Component (interface), ConcreteComponent (base object), Decorator (wraps component, implements component interface), ConcreteDecorator (adds functionality). Example: Java I/O streams - BufferedInputStream decorates FileInputStream.",
+      "category": "Decorator"
+    },
+    {
+      "question": "What are the benefits and drawbacks of Decorator Pattern?",
+      "answer": "Benefits: Add responsibilities dynamically, avoid subclass explosion, combine behaviors flexibly, open-closed principle. Drawbacks: Many small objects, decorator identity issues, order of decoration matters.",
+      "details": "Decorator vs Inheritance: Decorator adds at runtime, composition-based, can be stacked. Inheritance is compile-time, creates class hierarchy. Decorator useful when: Many independent optional features, want to add/remove features dynamically.",
+      "category": "Decorator"
+    },
+    {
+      "question": "What is the Facade Pattern?",
+      "answer": "Facade: Provide unified interface to set of interfaces in subsystem. Simplifies complex subsystem for clients. Client uses facade instead of subsystem classes directly.",
+      "details": "Structure: Facade (simplified interface), Subsystem classes (complex implementation). Doesn't prevent direct subsystem access - just provides simpler alternative. Example: Compiler facade hiding lexer, parser, optimizer, code generator. Home theater facade for TV, DVD, lights.",
+      "category": "Facade"
+    },
+    {
+      "question": "When should you use Facade Pattern?",
+      "answer": "Use when: Want simple interface to complex subsystem, many dependencies between clients and implementation, want to layer subsystems (facade per layer).",
+      "details": "Benefits: Simplifies client code, decouples client from subsystem, subsystem can change without affecting clients. Doesn't add new functionality - just simplifies access. Can have multiple facades for different use cases. Often entry point to package/module.",
+      "category": "Facade"
+    },
+    {
+      "question": "What is the Flyweight Pattern?",
+      "answer": "Flyweight: Use sharing to support large numbers of fine-grained objects efficiently. Separate intrinsic state (shared) from extrinsic state (context-specific). Many objects share common parts.",
+      "details": "Structure: Flyweight (shared interface), ConcreteFlyweight (stores intrinsic state), FlyweightFactory (manages shared flyweights), Client (maintains extrinsic state). Example: Character objects in text editor - share font/style data, position is extrinsic.",
+      "category": "Flyweight"
+    },
+    {
+      "question": "What is intrinsic vs extrinsic state in Flyweight?",
+      "answer": "Intrinsic state: Stored in flyweight, shared among many contexts, context-independent. Extrinsic state: Passed in by client, varies per context, not stored in flyweight.",
+      "details": "Example: Chess piece - intrinsic: type (king, queen), color; extrinsic: position on board. Intrinsic state must be immutable for sharing to work safely. Tradeoff: Saves memory but adds computation to manage extrinsic state.",
+      "category": "Flyweight"
+    },
+    {
+      "question": "What is the Proxy Pattern?",
+      "answer": "Proxy: Provide surrogate/placeholder for another object to control access. Proxy has same interface as real object, intercepts calls. Types: Virtual, Remote, Protection, Smart reference.",
+      "details": "Types: Virtual proxy (lazy loading), Remote proxy (local rep of remote object), Protection proxy (access control), Smart proxy (additional actions like reference counting). Example: Image proxy loads on demand, RMI stubs, access control wrapper.",
+      "category": "Proxy"
+    },
+    {
+      "question": "What is the difference between Decorator and Proxy?",
+      "answer": "Decorator: Adds responsibilities/behavior, client knows about decoration, can be stacked. Proxy: Controls access, client typically doesn't know about proxy, focuses on access control not new behavior.",
+      "details": "Decorator: Open for adding features. Proxy: Manages access to object. Decorator created by client. Proxy often creates wrapped object itself. Both use same interface as subject. Similar structure, different intent.",
+      "category": "Comparison"
+    },
+    {
+      "question": "How do you choose between structural patterns for a given problem?",
+      "answer": "Adapter: Make incompatible interfaces work. Bridge: Vary abstraction and implementation independently. Composite: Tree structures with uniform treatment. Decorator: Add behaviors dynamically. Facade: Simplify complex subsystem. Flyweight: Share many small objects. Proxy: Control access.",
+      "details": "Decision guide: Need to simplify? → Facade. Need compatibility? → Adapter. Need access control/lazy load? → Proxy. Need dynamic features? → Decorator. Need tree structure? → Composite. Need to save memory? → Flyweight. Need flexibility in implementation? → Bridge.",
+      "category": "Comparison"
+    }
+  ]
+}

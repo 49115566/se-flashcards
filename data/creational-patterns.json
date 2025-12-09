@@ -1,0 +1,98 @@
+{
+  "id": "creational-patterns",
+  "title": "Creational Design Patterns",
+  "description": "Singleton, Factory Method, Abstract Factory, Builder, and Prototype patterns",
+  "category": "patterns",
+  "cards": [
+    {
+      "question": "What are Creational Design Patterns and what problem do they solve?",
+      "answer": "Creational patterns abstract the instantiation process. They help make a system independent of how objects are created, composed, and represented. Solve: Hide creation logic, reduce coupling to concrete classes.",
+      "details": "GoF Creational Patterns: Singleton, Factory Method, Abstract Factory, Builder, Prototype. Benefits: Flexibility in what/how/when objects are created. Use when: Object creation is complex, need to vary the types created, want to defer creation decisions.",
+      "category": "Overview"
+    },
+    {
+      "question": "What is the Singleton Pattern and how do you implement it?",
+      "answer": "Singleton: Ensure class has only one instance, provide global access point. Implementation: Private constructor, static getInstance() method, static instance variable.",
+      "details": "Use when: Exactly one instance needed (configuration, logging, connection pool). Thread-safe approaches: Eager initialization, synchronized getInstance(), double-checked locking, enum singleton. Drawbacks: Global state, hard to test, tight coupling. Modern alternative: Dependency injection with singleton scope.",
+      "category": "Singleton"
+    },
+    {
+      "question": "What problems does Singleton Pattern solve and what are its drawbacks?",
+      "answer": "Solves: Controlled access to sole instance, reduced namespace pollution, permits variable number of instances, more flexible than class operations. Drawbacks: Hard to unit test, hidden dependencies, global state, violates SRP.",
+      "details": "Testing issue: Can't mock singleton easily. Solution: Depend on interface, inject singleton. Alternatives: Monostate pattern, dependency injection. Singleton is often overused - consider if you really need exactly one instance or just want convenient access.",
+      "category": "Singleton"
+    },
+    {
+      "question": "What is the Factory Method Pattern?",
+      "answer": "Factory Method: Define interface for creating object, let subclasses decide which class to instantiate. Defers instantiation to subclasses. Creator declares factory method, ConcreteCreator implements it.",
+      "details": "Structure: Creator (declares factoryMethod()), ConcreteCreator (implements factoryMethod()), Product (interface), ConcreteProduct. Example: Document app - Application.createDocument() overridden by WordApp, PDFApp to create specific document types.",
+      "category": "Factory Method"
+    },
+    {
+      "question": "When should you use Factory Method Pattern?",
+      "answer": "Use when: Class can't anticipate which objects it must create, class wants subclasses to specify objects created, need to delegate creation to helper subclasses.",
+      "details": "Benefits: Removes tight coupling to concrete classes, follows Open-Closed Principle (add new products via new creators). Tradeoff: Requires subclassing. Compare to Abstract Factory: Factory Method uses inheritance, Abstract Factory uses composition.",
+      "category": "Factory Method"
+    },
+    {
+      "question": "What is the Abstract Factory Pattern?",
+      "answer": "Abstract Factory: Provide interface for creating families of related objects without specifying concrete classes. Factory creates multiple related products that belong together.",
+      "details": "Structure: AbstractFactory (declares creation methods for each product type), ConcreteFactory (implements creation for product family), AbstractProduct (interface per product type), ConcreteProduct. Example: GUI factory creating matching Button, Checkbox, TextField for Windows vs Mac.",
+      "category": "Abstract Factory"
+    },
+    {
+      "question": "What is the difference between Factory Method and Abstract Factory?",
+      "answer": "Factory Method: Creates ONE product, uses inheritance (subclass overrides method). Abstract Factory: Creates FAMILY of related products, uses composition (factory object passed in).",
+      "details": "Factory Method: Single method returning product. Abstract Factory: Object with multiple creation methods for related products. Abstract Factory often implemented with Factory Methods. Use Abstract Factory when need to create matched sets of objects.",
+      "category": "Factory Comparison"
+    },
+    {
+      "question": "What is the Builder Pattern?",
+      "answer": "Builder: Separate construction of complex object from its representation. Same construction process can create different representations. Director orchestrates, Builder creates parts step-by-step.",
+      "details": "Structure: Builder (interface for creating parts), ConcreteBuilder (constructs and assembles parts), Director (constructs using builder interface), Product (complex object). Use when: Object has many optional parameters, construction involves multiple steps, want to create different representations.",
+      "category": "Builder"
+    },
+    {
+      "question": "When should you use Builder Pattern and what are common implementations?",
+      "answer": "Use when: Object construction is complex, many optional parameters, need to construct immutable objects with many fields, want readable object construction code.",
+      "details": "Common implementation: Fluent builder with method chaining. Example: new CarBuilder().setEngine('V8').setSeats(4).setGPS(true).build(). Benefits: Avoids telescoping constructors, clearer than big constructor calls, enforces required fields. Java example: StringBuilder.",
+      "category": "Builder"
+    },
+    {
+      "question": "What is the Prototype Pattern?",
+      "answer": "Prototype: Create new objects by copying existing prototype instance. Client asks prototype to clone itself. Avoids subclassing and expensive creation from scratch.",
+      "details": "Structure: Prototype (declares clone interface), ConcretePrototype (implements clone), Client (creates new object by asking prototype to clone). Use when: Object creation is expensive, need copy of existing object, want to avoid subclasses of factories.",
+      "category": "Prototype"
+    },
+    {
+      "question": "What is the difference between shallow copy and deep copy in Prototype Pattern?",
+      "answer": "Shallow copy: Copy object but share references to nested objects. Deep copy: Copy object AND recursively copy all nested objects. Prototype typically needs deep copy for true independence.",
+      "details": "Shallow copy problem: Modifying nested object affects both original and copy. Implementation: Override clone() carefully, decide per field whether to share or copy. Java: Default clone() is shallow. Consider copy constructor or serialization for deep copy.",
+      "category": "Prototype"
+    },
+    {
+      "question": "How do you choose which creational pattern to use?",
+      "answer": "Singleton: Exactly one instance needed. Factory Method: Subclasses should decide what to create. Abstract Factory: Families of related objects. Builder: Complex construction, many optional parts. Prototype: Create by copying existing object.",
+      "details": "Decision factors: Number of products, whether products are related, construction complexity, need for single instance. Patterns can combine: Abstract Factory implemented with Factory Methods, Builder creates Singleton. Start simple, refactor to patterns when needed.",
+      "category": "Comparison"
+    },
+    {
+      "question": "What is the Simple Factory idiom and how does it differ from Factory Method?",
+      "answer": "Simple Factory: Static method or separate class that creates objects based on parameters. NOT a GoF pattern. Differs from Factory Method: No inheritance, single factory class makes decisions.",
+      "details": "Example: ShapeFactory.createShape('circle') returns Circle. Benefits: Centralizes creation logic, removes 'new' from client code. Drawbacks: Adding new types requires modifying factory (violates Open-Closed). Factory Method adds extensibility via subclassing.",
+      "category": "Factory Variations"
+    },
+    {
+      "question": "How does Dependency Injection relate to creational patterns?",
+      "answer": "Dependency Injection (DI): Instead of creating dependencies, receive them from external source (container/framework). Alternative to explicit factory patterns. Objects don't create their dependencies - they're injected.",
+      "details": "DI benefits: Very loose coupling, easy testing with mocks, centralized object lifecycle management. Frameworks: Spring (Java), Angular (TypeScript). DI containers often use Factory internally. Modern approach often preferred over manual factory patterns.",
+      "category": "Modern Patterns"
+    },
+    {
+      "question": "Give a concrete example of when to use Abstract Factory over Factory Method.",
+      "answer": "Abstract Factory: Creating themed UI (Dark theme factory creates dark buttons, dark menus, dark dialogs - all matching). All products must work together. Factory Method: Just need to vary one type of product.",
+      "details": "Abstract Factory ensures consistency: If you get a WindowsFactory, all created components (Button, Menu, Dialog) are Windows-style. Factory Method example: Different document types in app - each app subclass creates its own document type but doesn't need matching families.",
+      "category": "Comparison"
+    }
+  ]
+}

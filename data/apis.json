@@ -1,0 +1,98 @@
+{
+  "id": "apis",
+  "title": "APIs & Web Services",
+  "description": "REST APIs, API design principles, mashups, integration patterns, and API security",
+  "category": "integration",
+  "cards": [
+    {
+      "question": "What is an API and what are the main types?",
+      "answer": "API (Application Programming Interface): Contract that defines how software components communicate. Types: Library APIs (in-process), Web APIs (HTTP-based), OS APIs (system calls), Database APIs.",
+      "details": "Web API types: REST (representational state transfer), SOAP (XML-based protocol), GraphQL (query language), gRPC (binary protocol). Modern focus: RESTful web APIs. API defines: Endpoints, request/response formats, authentication, rate limits.",
+      "category": "Fundamentals"
+    },
+    {
+      "question": "What is REST and what are its core principles?",
+      "answer": "REST (Representational State Transfer): Architectural style for web services. Principles: Client-server, Stateless, Cacheable, Uniform interface, Layered system, Code on demand (optional).",
+      "details": "Uniform interface constraints: Resource identification (URIs), Resource manipulation through representations, Self-descriptive messages, HATEOAS (hypermedia as engine of application state). REST is style, not protocol - typically uses HTTP.",
+      "category": "REST"
+    },
+    {
+      "question": "What are HTTP methods and how do they map to CRUD operations?",
+      "answer": "GET = Read (safe, idempotent). POST = Create. PUT = Update/Replace (idempotent). PATCH = Partial update. DELETE = Delete (idempotent). Safe: No side effects. Idempotent: Same result if repeated.",
+      "details": "GET: Cacheable, should not modify state. POST: Not idempotent - creates new resource each time. PUT: Replaces entire resource, idempotent. PATCH: Updates specific fields. DELETE: Idempotent - deleting twice same effect. Use correct method for semantic meaning.",
+      "category": "REST"
+    },
+    {
+      "question": "What are HTTP status codes and which should you use?",
+      "answer": "1xx: Informational. 2xx: Success (200 OK, 201 Created, 204 No Content). 3xx: Redirection. 4xx: Client error (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found). 5xx: Server error (500 Internal Server Error).",
+      "details": "Use appropriate codes: 200 for successful GET/PUT. 201 for successful POST (new resource). 204 for successful DELETE (no body). 400 for validation errors. 401 for authentication required. 403 for forbidden (authenticated but not authorized). 404 for not found. 422 for validation failure.",
+      "category": "REST"
+    },
+    {
+      "question": "How should you design REST API URLs/endpoints?",
+      "answer": "Use nouns for resources, not verbs. Plural names. Hierarchical for relationships. Examples: /users, /users/{id}, /users/{id}/orders. Use query params for filtering/sorting: /users?status=active&sort=name.",
+      "details": "Bad: /getUsers, /createUser. Good: GET /users, POST /users. Hierarchy shows relationships: /users/123/orders = orders for user 123. Keep URLs simple, consistent. Version in URL (/v1/users) or header. Avoid deep nesting (max 2-3 levels).",
+      "category": "API Design"
+    },
+    {
+      "question": "What is API versioning and what are the approaches?",
+      "answer": "API versioning maintains backward compatibility when API evolves. Approaches: 1) URL path (/v1/users), 2) Query parameter (?version=1), 3) Header (Accept-Version: v1), 4) Content negotiation (Accept: application/vnd.api.v1+json).",
+      "details": "URL path: Most visible, easy caching, clutters URL. Header: Cleaner URLs, less visible. Support multiple versions during transition. Deprecation strategy: Warn users, set sunset dates, provide migration guides. Breaking changes = new major version.",
+      "category": "API Design"
+    },
+    {
+      "question": "What is a Mashup and what are the types?",
+      "answer": "Mashup: Web application combining data/functionality from multiple sources into single integrated experience. Types: Data mashups, Consumer mashups, Business mashups.",
+      "details": "Examples: Real estate site with Google Maps + MLS listings. Travel site combining flights, hotels, reviews. Weather overlay on event calendar. Challenges: API compatibility, data format differences, rate limits, authentication across services, error handling.",
+      "category": "Mashups"
+    },
+    {
+      "question": "What are common API authentication methods?",
+      "answer": "API Key: Simple token in header/query. Basic Auth: Username:password base64 encoded. OAuth 2.0: Token-based, delegated authorization. JWT: Self-contained tokens with claims. API Key simplest, OAuth most flexible.",
+      "details": "API Key: Easy but less secure (often in URLs). Basic Auth: Simple but requires HTTPS. OAuth 2.0: Complex but handles delegation (log in with Google). JWT: Stateless, contains user info, signed. Choose based on: Security needs, client type, use case. Always use HTTPS.",
+      "category": "Security"
+    },
+    {
+      "question": "What is OAuth 2.0 and what problem does it solve?",
+      "answer": "OAuth 2.0: Authorization framework allowing third-party apps to access resources on behalf of user, without sharing credentials. Solves: Delegated access without password sharing.",
+      "details": "Roles: Resource Owner (user), Client (app), Authorization Server, Resource Server. Flows: Authorization Code (web apps), Implicit (SPAs - deprecated), Client Credentials (server-to-server), Password Grant (trusted apps). Access tokens expire, refresh tokens get new access tokens.",
+      "category": "Security"
+    },
+    {
+      "question": "What is rate limiting and why is it important?",
+      "answer": "Rate limiting: Restricting number of API requests per time period. Protects: Server resources, prevents abuse, ensures fair usage, manages costs. Typically: X requests per minute/hour/day.",
+      "details": "Implementation: Token bucket, sliding window. Response headers: X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset. Status 429 Too Many Requests. Client handling: Backoff, retry with exponential delay, queue requests. Consider: Different limits per endpoint, per user tier.",
+      "category": "API Design"
+    },
+    {
+      "question": "What is CORS and why does it matter for APIs?",
+      "answer": "CORS (Cross-Origin Resource Sharing): Browser security mechanism. By default, browsers block requests to different origins. CORS headers allow servers to specify who can access resources.",
+      "details": "Same-origin policy: Browser prevents cross-origin requests. CORS headers: Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers. Preflight: OPTIONS request for complex requests. Server must explicitly allow cross-origin access. Only affects browser requests.",
+      "category": "Security"
+    },
+    {
+      "question": "What should API error responses include?",
+      "answer": "Error responses should include: HTTP status code, error code (machine-readable), message (human-readable), details (validation errors), and optionally: documentation link, request ID for debugging.",
+      "details": "Example: {\"status\": 400, \"code\": \"VALIDATION_ERROR\", \"message\": \"Invalid input\", \"details\": [{\"field\": \"email\", \"error\": \"Invalid format\"}], \"requestId\": \"abc123\"}. Consistent format across all errors. Don't expose internal details (stack traces). Log details server-side with request ID.",
+      "category": "API Design"
+    },
+    {
+      "question": "What is pagination and how should you implement it?",
+      "answer": "Pagination: Breaking large result sets into pages. Approaches: Offset-based (/users?offset=20&limit=10), Page-based (/users?page=3&pageSize=10), Cursor-based (/users?after=abc123&limit=10).",
+      "details": "Offset: Simple but slow for large offsets (DB scans). Cursor: Better performance, stable during updates. Include in response: Total count, page info, links to next/prev. HATEOAS: Include links in response. Default reasonable page size, cap maximum.",
+      "category": "API Design"
+    },
+    {
+      "question": "What is the difference between REST and GraphQL?",
+      "answer": "REST: Multiple endpoints, server defines data shape, over/under-fetching possible. GraphQL: Single endpoint, client specifies exact data needed, strongly typed schema.",
+      "details": "REST: Simpler, cacheable, established. GraphQL: Flexible queries, reduces round trips, better for complex data needs. GraphQL challenges: Caching harder, query complexity, N+1 queries. Choose REST for simple CRUD, GraphQL for complex data requirements.",
+      "category": "API Styles"
+    },
+    {
+      "question": "How do you design APIs for reliability and resilience?",
+      "answer": "Idempotency: Safe to retry. Timeouts: Don't wait forever. Retries: Exponential backoff. Circuit breaker: Fail fast when dependency down. Graceful degradation: Return partial results.",
+      "details": "Idempotency keys: Client-generated ID to prevent duplicate processing. Circuit breaker states: Closed (normal), Open (failing fast), Half-open (testing). Health endpoints: /health for monitoring. Rate limit responses with Retry-After header. Document expected behavior.",
+      "category": "Resilience"
+    }
+  ]
+}

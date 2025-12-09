@@ -1,0 +1,86 @@
+{
+  "id": "best-practices",
+  "title": "Best Practices in Software Development",
+  "description": "Pair programming, testing, refactoring, version control, CI, and incremental delivery",
+  "category": "process",
+  "cards": [
+    {
+      "question": "What are the two models of pair programming and how do they differ?",
+      "answer": "Driver-Navigator Model: Driver controls keyboard (tactical), Navigator checks and strategizes. Ping-Pong Model: One writes tests, other writes code to pass tests - roles switch (supports TDD).",
+      "details": "Both models support distributed pairs. Pair programming facilitates: Enforcement of quality standards, Adherence to team practices, Problem solving and troubleshooting, Learning and information diffusion.",
+      "category": "Pair Programming"
+    },
+    {
+      "question": "When does pair programming NOT pay off?",
+      "answer": "Pair programming may not pay off for menial/routine tasks. It works best for complex tasks and problem solving.",
+      "details": "Guidelines: Match skills and challenges (appropriate skill levels with appropriate complexity). Leverage for learning-coaching. Avoid failure modes: Don't pair weak programmer with complex task (overwhelmed novice), Don't waste expert on routine tasks. Respect personal traits - don't force pairing on all programmers.",
+      "category": "Pair Programming"
+    },
+    {
+      "question": "What is in-process testing and what does it enable?",
+      "answer": "In-process testing is tight interleaving of testing and development to ensure production code is sufficiently covered by tests at all times and tests never lag behind.",
+      "details": "Enables: Refactoring, Continuous integration, Incremental delivery. Supports: Testable code. Prevents: Neglecting tests after production, Integration risk. Key: Tests are added incrementally before, right after, or in parallel with production code.",
+      "category": "Testing Practices"
+    },
+    {
+      "question": "What is the key difference between Test-Driven Development (TDD) and Incremental Test-Last Development?",
+      "answer": "TDD writes tests BEFORE production code (red-green-refactor), while Test-Last writes production code first, then tests. The key insight: the order is secondary - what matters is tests don't lag behind.",
+      "details": "TDD Flow: New task → Make test fail → Add test → Make all tests pass → Refactor → Make all tests pass. Test-Last Flow: New task → Add production code → Add test → Make test pass → Refactor → Make all tests pass.",
+      "category": "Testing Practices"
+    },
+    {
+      "question": "What is refactoring?",
+      "answer": "Improving the design of existing code without changing its observable behavior.",
+      "details": "Enables: Emerging design, Deferring design decisions. Facilitates: Making designs more extensible & flexible, Maintainability. Tests validate that functionality is preserved after refactoring. Requires good test coverage to refactor safely.",
+      "category": "Refactoring"
+    },
+    {
+      "question": "Name common automated refactorings available in modern IDEs.",
+      "answer": "Renaming/Relocation: Rename method/field, move class/method. Abstraction: Extract class/method/interface, pull-up/push-down. Decoupling: Introduce indirection, factory method, parameter.",
+      "details": "Pull-up: Move method/field to superclass. Push-down: Move to subclass. Extract method: Break large method into smaller ones. Encapsulate field: Introduce getter/setter. These are available in IDEs like Eclipse, IntelliJ, VS Code.",
+      "category": "Refactoring"
+    },
+    {
+      "question": "What are the key differences between centralized and distributed version control?",
+      "answer": "Centralized (CVS, Subversion): Single central repository, local copies transient, all changes committed centrally. Distributed (Git, Mercurial): Each developer has permanent local copy, changes committed locally first, then pushed to central repo.",
+      "details": "Distributed advantages: Supports offline work, better decentralization, local history/branching. Version control enables: Team development, Incremental delivery, Issue tracking with code traceability, Continuous integration, Configuration management, Audits and change analysis.",
+      "category": "Version Control"
+    },
+    {
+      "question": "What is Continuous Integration and why is it important?",
+      "answer": "CI is a practice where team members integrate their work frequently (daily+), with each integration verified by automated build (including tests) to detect integration errors quickly.",
+      "details": "CI Workflow: Develop → Push → Build → Analyze → Report. Enables: Cohesive, rapid team development; Incremental delivery. Prevents: Expensive late integration problems. Key benefit: 'Big bang' integration at the end is risky - CI catches problems early.",
+      "category": "CI/CD"
+    },
+    {
+      "question": "What is incremental delivery and why is it less risky than big-bang delivery?",
+      "answer": "Incremental delivery engineers software in small increments of end-to-end functionality, enabling early deployment and feedback.",
+      "details": "Big-Bang Risk: All requirements gathered upfront, all development before delivery, single release. High risk: Requirements may be wrong, issues discovered late, major rework possible. Incremental Benefits: Early feedback corrects misunderstandings, value delivered earlier, issues discovered sooner, enables prioritization and adaptation.",
+      "category": "Delivery"
+    },
+    {
+      "question": "How do technical practices work together synergistically?",
+      "answer": "Pair Programming enables In-process Testing, which enables Refactoring and CI. CI enables Incremental Delivery. Combined outcomes: Quality, Maintainability, Extensibility, Communication, Early Deployment, Reduced Risk.",
+      "details": "In-process Testing enables Refactoring (safe to change) and CI (automated quality gates). Version Control enables team development and CI. These aren't independent practices - they reinforce each other.",
+      "category": "Practice Synergies"
+    },
+    {
+      "question": "What are the benefits of pair programming for a development team?",
+      "answer": "Enforcement of quality standards, adherence to team practices, problem solving and troubleshooting, learning and information diffusion.",
+      "details": "Economics consideration: May speed up development or have short-term productivity hit. Often catches defects before they snowball. Future effort saved by reduced defects may compensate for short-term productivity cost. Effectiveness varies by context.",
+      "category": "Pair Programming"
+    },
+    {
+      "question": "What other important practices complement the core technical practices?",
+      "answer": "Continuous deployment, Issue tracking, Static analysis, Test coverage monitoring, Specialized testing (performance, security, usability), Code reviews.",
+      "details": "These practices form a comprehensive quality assurance ecosystem. Static analysis catches issues without running code. Code reviews spread knowledge and catch issues. Issue tracking provides traceability. Together they create multiple quality gates throughout development.",
+      "category": "Practice Synergies"
+    },
+    {
+      "question": "You notice tests are consistently being written weeks after production code in your team. What risks does this create?",
+      "answer": "Risks: Production code may not be testable, Integration risk increases, Defects accumulate without detection, Refactoring becomes unsafe, CI loses effectiveness.",
+      "details": "Solution: In-process testing - tests should never lag behind production code. Whether using TDD or test-last, the key is immediate test coverage. Waiting to write tests defeats the purpose of automated testing and creates technical debt.",
+      "category": "Testing Practices"
+    }
+  ]
+}

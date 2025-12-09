@@ -1,0 +1,104 @@
+{
+  "id": "ooad",
+  "title": "Object-Oriented Analysis & Design",
+  "description": "Design principles, GRASP patterns, responsibility assignment, and design class diagrams",
+  "category": "design",
+  "cards": [
+    {
+      "question": "What is GRASP and what problem does it solve?",
+      "answer": "GRASP = General Responsibility Assignment Software Patterns. Provides guidelines for assigning responsibilities to classes in object-oriented design. Helps answer: 'Which class should be responsible for this?'",
+      "details": "9 GRASP patterns: Information Expert, Creator, Controller, Low Coupling, High Cohesion, Polymorphism, Pure Fabrication, Indirection, Protected Variations. Not design patterns - they're principles for responsibility assignment.",
+      "category": "GRASP"
+    },
+    {
+      "question": "What is the Information Expert pattern and how do you apply it?",
+      "answer": "Assign responsibility to the class that has the information needed to fulfill it. The 'expert' is the class with the necessary data.",
+      "details": "Example: Who calculates order total? Order has line items, so Order is the expert. Who knows the sale total? Sale has all SaleLineItems, so Sale calculates. Benefits: Low coupling, encapsulation. Information stays with behavior that uses it.",
+      "category": "GRASP"
+    },
+    {
+      "question": "What is the Creator pattern and when should class A create class B?",
+      "answer": "Assign class A responsibility to create instance of B if: A contains/aggregates B, A records B, A closely uses B, A has initializing data for B.",
+      "details": "Example: Who creates SaleLineItem? Sale contains SaleLineItems, so Sale creates them. Board contains Squares, Board creates Squares. Benefits: Low coupling - creator already knows about the created class. Exceptions: Use Factory when creation is complex.",
+      "category": "GRASP"
+    },
+    {
+      "question": "What is a Controller in GRASP and what are the two types?",
+      "answer": "Controller: First object beyond UI that receives/coordinates system operations. Types: 1) Facade Controller (represents overall system), 2) Use Case Controller (handles one use case scenario).",
+      "details": "Example: POSSystem as facade controller OR ProcessSaleHandler as use case controller. Controller should delegate work, not do it all. Bloated controller anti-pattern: Too many responsibilities. Solution: More use case controllers or delegation.",
+      "category": "GRASP"
+    },
+    {
+      "question": "What is Low Coupling and why is it important?",
+      "answer": "Low Coupling: Minimize dependencies between classes. Lower coupling = less impact when one class changes, easier to understand/test/reuse classes independently.",
+      "details": "Types of coupling (weakest to strongest): No coupling, Data coupling (pass parameters), Stamp coupling (pass objects), Control coupling (control flow), Common coupling (shared global), Content coupling (direct access). Evaluate coupling during design decisions.",
+      "category": "GRASP"
+    },
+    {
+      "question": "What is High Cohesion and how do you evaluate it?",
+      "answer": "High Cohesion: Class has focused, related responsibilities. Highly cohesive class does one thing well. Low cohesion = class does too many unrelated things.",
+      "details": "Signs of low cohesion: Class has many unrelated methods, methods don't use each other's data, class name is vague (Manager, Processor). Benefits of high cohesion: Easier to understand, maintain, reuse. Single Responsibility Principle is related concept.",
+      "category": "GRASP"
+    },
+    {
+      "question": "What is Polymorphism as a GRASP pattern?",
+      "answer": "When behavior varies by type, assign responsibility to the types using polymorphic operations instead of conditionals. Let each type implement its own version of behavior.",
+      "details": "Instead of: if (type == 'A') doA(); else doB(); Use: type.doBehavior() where each subtype overrides doBehavior(). Benefits: Adding new types doesn't require changing existing code (Open-Closed Principle). Eliminates type-checking conditionals.",
+      "category": "GRASP"
+    },
+    {
+      "question": "What is Pure Fabrication and when do you use it?",
+      "answer": "Pure Fabrication: Create a class that doesn't represent a domain concept when assigning to domain classes would hurt cohesion or coupling. It's 'fabricated' for design purposes.",
+      "details": "Example: PersistenceService - doesn't exist in domain model, but having Sale save itself to database reduces cohesion. Database operations go to PersistenceService instead. Other examples: Factories, Strategies, utility classes.",
+      "category": "GRASP"
+    },
+    {
+      "question": "What is Indirection and why use it?",
+      "answer": "Indirection: Assign responsibility to intermediate object to decouple two things. 'Any problem in CS can be solved by adding another level of indirection.'",
+      "details": "Example: Instead of Sale directly calling external tax calculator, create TaxCalculatorAdapter in between. Benefits: Protects from external changes, easier to swap implementations, supports testing with mocks. Related patterns: Adapter, Facade, Proxy.",
+      "category": "GRASP"
+    },
+    {
+      "question": "What is Protected Variations and how do you achieve it?",
+      "answer": "Protected Variations: Identify points of predicted variation/instability and create stable interfaces around them. Protects the system from changes in those areas.",
+      "details": "Mechanisms: Encapsulation, interfaces, polymorphism, indirection, standards. Example: Database might change - create abstract persistence interface. UI might change - separate UI from business logic. Core principle behind many design patterns.",
+      "category": "GRASP"
+    },
+    {
+      "question": "How do you create a Design Class Diagram from a Domain Model?",
+      "answer": "1) Start with domain classes. 2) Add method signatures from interaction diagrams. 3) Add visibility (+public, -private, #protected). 4) Add navigation arrows showing direction of reference. 5) Add design classes (pure fabrications, patterns).",
+      "details": "Design class diagram includes: Class name, attributes with types, methods with parameters and return types, visibility, stereotypes (<<interface>>), relationships with navigation. More detailed than domain model.",
+      "category": "Design"
+    },
+    {
+      "question": "What is the relationship between sequence diagrams and class diagrams in design?",
+      "answer": "Sequence diagrams show runtime interactions (messages between objects). Class diagrams show static structure (classes and relationships). Methods in class diagram come from messages in sequence diagrams.",
+      "details": "Design workflow: 1) Draw sequence diagram for use case. 2) Each message becomes a method. 3) Add methods to class diagram. If object A sends message m() to object B, then B must have method m() and A must have reference to B.",
+      "category": "Design"
+    },
+    {
+      "question": "What are the key OO design principles (SOLID)?",
+      "answer": "S: Single Responsibility. O: Open-Closed (open for extension, closed for modification). L: Liskov Substitution. I: Interface Segregation. D: Dependency Inversion (depend on abstractions).",
+      "details": "Single Responsibility = High Cohesion. Open-Closed = Protected Variations + Polymorphism. Liskov = Subtypes must be substitutable. Interface Segregation = Clients shouldn't depend on unused methods. Dependency Inversion = High-level shouldn't depend on low-level.",
+      "category": "Design Principles"
+    },
+    {
+      "question": "How do you evaluate design quality?",
+      "answer": "Good design: Low coupling, high cohesion, uses appropriate GRASP patterns, follows SOLID principles, is testable, is maintainable, handles change gracefully.",
+      "details": "Code smells indicating poor design: Long methods, large classes, duplicate code, feature envy (method uses other class's data), inappropriate intimacy (classes know too much about each other). Refactoring improves design without changing behavior.",
+      "category": "Design Principles"
+    },
+    {
+      "question": "When should you use inheritance vs. composition?",
+      "answer": "Inheritance: 'Is-a' relationship, subclass needs ALL superclass behavior, want polymorphism. Composition: 'Has-a' relationship, need some but not all behavior, want flexibility to change at runtime.",
+      "details": "Favor composition over inheritance. Inheritance creates tight coupling - changes to superclass affect all subclasses. Composition is more flexible - can swap components. Example: Instead of Stack extending ArrayList, Stack has an ArrayList internally.",
+      "category": "Design Principles"
+    },
+    {
+      "question": "What is the difference between interfaces and abstract classes, and when use each?",
+      "answer": "Interface: Contract only, no implementation, class can implement multiple. Abstract class: Can have implementation, single inheritance only, can have state. Use interface for capabilities, abstract class for shared implementation.",
+      "details": "Use interface when: Different class hierarchies need same capability, you want multiple 'inheritance'. Use abstract class when: Subclasses share implementation code, you need constructors or fields. Java 8+ interfaces can have default methods.",
+      "category": "Design Principles"
+    }
+  ]
+}

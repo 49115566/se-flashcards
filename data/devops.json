@@ -1,0 +1,98 @@
+{
+  "id": "devops",
+  "title": "DevOps & CI/CD",
+  "description": "DevOps culture, CI/CD pipelines, deployment strategies, containers, and infrastructure as code",
+  "category": "devops",
+  "cards": [
+    {
+      "question": "What is DevOps and what problem does it solve?",
+      "answer": "DevOps: Culture/practices unifying Development and Operations. Solves: Silos between dev (ship features fast) and ops (stability), slow releases, manual deployments, blame culture. Goal: Faster, reliable, continuous delivery.",
+      "details": "Key principles: Automation, collaboration, continuous improvement, fast feedback, shared responsibility. DevOps is culture first, tools second. Metrics: Deployment frequency, lead time, MTTR (Mean Time To Recovery), change failure rate.",
+      "category": "Fundamentals"
+    },
+    {
+      "question": "What is Continuous Integration (CI)?",
+      "answer": "CI: Practice of frequently merging code changes into shared repository, with automated build and test on each merge. Catches integration issues early. Goal: Always have working, tested code.",
+      "details": "CI practices: Commit frequently (daily+), automated builds triggered on commit, comprehensive automated tests, fast builds (< 10 minutes ideal), fix broken builds immediately. Benefits: Early bug detection, reduced integration risk, always deployable state.",
+      "category": "CI/CD"
+    },
+    {
+      "question": "What is Continuous Delivery vs Continuous Deployment?",
+      "answer": "Continuous Delivery: Every change is automatically tested and ready for production release - humans decide when to deploy. Continuous Deployment: Every change that passes tests is automatically deployed to production - no human intervention.",
+      "details": "Delivery: Deploy button is always ready. Deployment: No deploy button - fully automated. Deployment is more aggressive, requires high confidence in testing. Most organizations do Delivery. Prerequisites: Strong testing, monitoring, rollback capability.",
+      "category": "CI/CD"
+    },
+    {
+      "question": "What is a CI/CD Pipeline and what are typical stages?",
+      "answer": "Pipeline: Automated sequence of stages code goes through from commit to production. Typical stages: Build → Unit Test → Integration Test → Deploy to Staging → Acceptance Test → Deploy to Production.",
+      "details": "Each stage is a quality gate - failure stops the pipeline. Additional stages: Static analysis, security scanning, performance testing, manual approval. Pipeline as code: Define in file (Jenkinsfile, .gitlab-ci.yml). Parallelization for speed. Artifacts passed between stages.",
+      "category": "CI/CD"
+    },
+    {
+      "question": "What are the key deployment strategies and when to use each?",
+      "answer": "Blue-Green: Two identical environments, switch traffic. Canary: Gradually route traffic to new version. Rolling: Update instances incrementally. Feature Flags: Deploy code, enable features separately.",
+      "details": "Blue-Green: Easy rollback, requires 2x resources. Canary: Lower risk, can detect issues early, complex routing. Rolling: Resource efficient, brief mixed versions. Feature Flags: Decouple deployment from release, can target users. Choose based on: Risk tolerance, resources, rollback needs.",
+      "category": "Deployment"
+    },
+    {
+      "question": "What is Blue-Green Deployment?",
+      "answer": "Blue-Green: Two identical production environments (Blue=current, Green=new). Deploy to Green, test, then switch router to Green. Old Blue becomes standby for instant rollback.",
+      "details": "Process: 1) Blue serves traffic. 2) Deploy new version to Green. 3) Test Green. 4) Switch router to Green. 5) Green now live, Blue is standby. Benefits: Zero-downtime, instant rollback. Challenges: Database migrations, 2x infrastructure cost, session handling.",
+      "category": "Deployment"
+    },
+    {
+      "question": "What is Canary Deployment?",
+      "answer": "Canary: Deploy new version to small subset of users/servers first. Monitor for issues. Gradually increase traffic if healthy. Rollback if problems detected.",
+      "details": "Name from coal mine canaries. Process: Deploy to 1% → monitor → 10% → monitor → 50% → 100%. Metrics to watch: Error rates, latency, business metrics. Automated rollback on anomaly detection. Benefits: Limit blast radius of bugs. Requires: Good monitoring, traffic routing capability.",
+      "category": "Deployment"
+    },
+    {
+      "question": "What is Infrastructure as Code (IaC)?",
+      "answer": "IaC: Managing/provisioning infrastructure through code instead of manual processes. Infrastructure defined in files, version controlled, reproducible. Tools: Terraform, CloudFormation, Ansible, Pulumi.",
+      "details": "Benefits: Reproducibility, version control, code review, automation, documentation. Declarative: Define desired state (Terraform). Imperative: Define steps (Ansible). Immutable infrastructure: Replace servers rather than update. Pet vs Cattle: Treat servers as disposable.",
+      "category": "IaC"
+    },
+    {
+      "question": "What are Containers and why use them for deployment?",
+      "answer": "Containers: Lightweight, isolated environments packaging application with dependencies. Docker is most common. Benefits: Consistent across environments ('works on my machine' solved), fast startup, resource efficient, portable.",
+      "details": "Container vs VM: Containers share OS kernel (lighter), VMs have full OS (more isolated). Dockerfile defines image. Image is template, Container is running instance. Registry stores images (Docker Hub). Orchestration (Kubernetes) manages containers at scale.",
+      "category": "Containers"
+    },
+    {
+      "question": "What is Kubernetes and what problems does it solve?",
+      "answer": "Kubernetes (K8s): Container orchestration platform. Solves: Running containers at scale, load balancing, self-healing, rolling updates, scaling, service discovery.",
+      "details": "Key concepts: Pod (smallest deployable unit), Service (stable network endpoint), Deployment (manages replicas), ConfigMap/Secret (configuration). Declarative: Define desired state, K8s maintains it. Self-healing: Restarts failed containers. Horizontal scaling: Adjust replicas based on load.",
+      "category": "Containers"
+    },
+    {
+      "question": "What is Monitoring and Observability?",
+      "answer": "Monitoring: Collecting metrics about system health (CPU, memory, requests). Observability: Understanding system internal state from external outputs. Three pillars: Logs, Metrics, Traces.",
+      "details": "Logs: Event records (what happened). Metrics: Numeric measurements over time (how much). Traces: Request path through distributed system (how long, where). Tools: Prometheus, Grafana, ELK Stack, Jaeger. Alerting: Notify on anomalies. Dashboards: Visualize health.",
+      "category": "Operations"
+    },
+    {
+      "question": "What is the role of automated testing in DevOps?",
+      "answer": "Automated testing enables CI/CD: Provides confidence for frequent releases, catches regressions quickly, enables fast feedback. Without automation, continuous delivery is impossible.",
+      "details": "Test pyramid in CI: Many unit tests (fast), fewer integration tests, few E2E tests. Pipeline gates: Tests must pass to proceed. Test parallelization for speed. Flaky tests are DevOps enemy - fix immediately. Test data management critical. Contract testing for services.",
+      "category": "Testing"
+    },
+    {
+      "question": "What is GitOps?",
+      "answer": "GitOps: Operations through Git. Git repository is single source of truth for infrastructure and application state. Changes through pull requests, automated sync to environments.",
+      "details": "Process: Declare desired state in Git → automated sync to cluster → drift detection alerts differences. Benefits: Version controlled infrastructure, audit trail, rollback via revert, developer-friendly (Git workflow). Tools: ArgoCD, Flux. Complements IaC with operational workflow.",
+      "category": "Practices"
+    },
+    {
+      "question": "What is the relationship between DevOps and Agile?",
+      "answer": "Agile: Iterative development with customer collaboration. DevOps: Extends agile through deployment and operations. DevOps enables Agile's goal of frequent, valuable releases. Complementary practices.",
+      "details": "Agile focuses on development practices, DevOps on delivery pipeline. DevOps enables: 'Done' means in production (not just 'coded'). Feedback from production informs development. Shared responsibility throughout lifecycle. Both: Culture of collaboration, continuous improvement, fast feedback.",
+      "category": "Culture"
+    },
+    {
+      "question": "What are the key DevOps metrics (DORA metrics)?",
+      "answer": "DORA metrics: Deployment Frequency (how often deploy), Lead Time for Changes (commit to production), MTTR (mean time to recover from failure), Change Failure Rate (% of deployments causing incidents).",
+      "details": "Elite teams: Multiple deploys/day, < 1 hour lead time, < 1 hour MTTR, < 15% failure rate. These metrics correlate with organizational performance. Measure to improve. Balance speed with stability. Track trends over time.",
+      "category": "Metrics"
+    }
+  ]
+}

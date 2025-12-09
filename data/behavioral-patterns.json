@@ -1,0 +1,104 @@
+{
+  "id": "behavioral-patterns",
+  "title": "Behavioral Design Patterns",
+  "description": "Strategy, Observer, Command, Template Method, State, Iterator, and other behavioral patterns",
+  "category": "patterns",
+  "cards": [
+    {
+      "question": "What are Behavioral Design Patterns and what problem do they solve?",
+      "answer": "Behavioral patterns focus on communication between objects - how they interact and distribute responsibility. Solve: Complex control flows, communication patterns, responsibility assignment.",
+      "details": "GoF Behavioral: Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor. Focus on algorithms, assignment of responsibilities, communication patterns between objects.",
+      "category": "Overview"
+    },
+    {
+      "question": "What is the Strategy Pattern?",
+      "answer": "Strategy: Define family of algorithms, encapsulate each one, make them interchangeable. Client can switch algorithms at runtime without changing client code. Composition over inheritance.",
+      "details": "Structure: Strategy (interface), ConcreteStrategy (implements algorithm), Context (configured with strategy, delegates to it). Example: Sorting algorithms, payment methods, compression algorithms. Eliminates conditionals for algorithm selection.",
+      "category": "Strategy"
+    },
+    {
+      "question": "When should you use Strategy Pattern?",
+      "answer": "Use when: Many related classes differ only in behavior, need different variants of algorithm, algorithm uses data client shouldn't know, class has many behaviors that appear as conditionals.",
+      "details": "Benefits: Algorithms reusable, easy to add new strategies, eliminates conditional statements, client can choose algorithm at runtime. Tradeoffs: Clients must know about strategies, communication overhead between strategy and context.",
+      "category": "Strategy"
+    },
+    {
+      "question": "What is the Observer Pattern?",
+      "answer": "Observer: Define one-to-many dependency between objects so when one changes state, all dependents are notified automatically. Subject (publisher) notifies Observers (subscribers).",
+      "details": "Structure: Subject (maintains observers, notifies), ConcreteSubject (stores state), Observer (interface for notification), ConcreteObserver (reacts to changes). Also called Publish-Subscribe. Example: Event listeners, MVC (Model notifies Views), data binding.",
+      "category": "Observer"
+    },
+    {
+      "question": "What are push vs pull models in Observer Pattern?",
+      "answer": "Push: Subject sends detailed change information to observers. Pull: Subject sends minimal notification, observers query subject for details. Push is simpler but less reusable; Pull is more flexible.",
+      "details": "Push: Subject determines what data observers need - observers may receive irrelevant data. Pull: Observers get only what they need but requires more coupling to subject. Modern event systems often use push with event objects containing relevant data.",
+      "category": "Observer"
+    },
+    {
+      "question": "What is the Command Pattern?",
+      "answer": "Command: Encapsulate request as object, allowing parameterization, queuing, logging, and undoable operations. Decouples sender from receiver.",
+      "details": "Structure: Command (interface with execute()), ConcreteCommand (binds action to receiver), Invoker (calls command), Receiver (knows how to perform action). Example: Menu actions, transaction logging, undo/redo, macro recording, job queues.",
+      "category": "Command"
+    },
+    {
+      "question": "How does Command Pattern enable undo/redo functionality?",
+      "answer": "Store executed commands in history. Each Command has execute() and unexecute(). Undo: Pop from history, call unexecute(). Redo: Re-execute stored command. Command stores state needed to undo.",
+      "details": "Memento pattern can help store pre-command state. Commands may store: Previous values, incremental changes, or use Memento. History can be stack (unlimited undo) or limited buffer. Composite Command enables macro undo.",
+      "category": "Command"
+    },
+    {
+      "question": "What is the Template Method Pattern?",
+      "answer": "Template Method: Define skeleton of algorithm in base class, defer some steps to subclasses. Subclasses redefine certain steps without changing algorithm structure. Inheritance-based.",
+      "details": "Structure: AbstractClass (defines template method + primitive operations), ConcreteClass (implements primitive operations). Template method calls primitive operations in order. Hooks: Optional steps subclasses may override. Example: Framework application lifecycle.",
+      "category": "Template Method"
+    },
+    {
+      "question": "What is the difference between Strategy and Template Method patterns?",
+      "answer": "Template Method: Uses inheritance, base class controls flow, subclasses fill in steps. Strategy: Uses composition, context delegates to strategy object, strategy controls entire algorithm.",
+      "details": "Template Method: Algorithm skeleton fixed, vary specific steps. Strategy: Swap entire algorithm. Template Method: compile-time binding. Strategy: runtime binding. Favor Strategy (composition) unless inheritance is natural fit.",
+      "category": "Comparison"
+    },
+    {
+      "question": "What is the State Pattern?",
+      "answer": "State: Allow object to alter behavior when internal state changes - object appears to change class. Encapsulate state-specific behavior in separate classes.",
+      "details": "Structure: Context (maintains current state), State (interface for state-specific behavior), ConcreteState (implements behavior for specific state). Example: TCP connection states, document workflow (draft → review → published), vending machine.",
+      "category": "State"
+    },
+    {
+      "question": "What is the difference between State and Strategy patterns?",
+      "answer": "State: Object changes behavior based on internal state, transitions happen automatically. Strategy: Client explicitly chooses algorithm. State is about lifecycle, Strategy is about algorithm choice.",
+      "details": "Structure is identical - difference is intent. State: Behavior changes as state changes, often involves state transitions. Strategy: Client controls which algorithm to use. State objects may know about each other (for transitions). Strategy objects are independent.",
+      "category": "Comparison"
+    },
+    {
+      "question": "What is the Iterator Pattern?",
+      "answer": "Iterator: Provide way to access elements of aggregate sequentially without exposing underlying representation. Encapsulates traversal algorithm.",
+      "details": "Structure: Iterator (interface: first, next, isDone, currentItem), ConcreteIterator, Aggregate (interface: createIterator), ConcreteAggregate. Example: Java Iterator, foreach loops. Multiple iterators on same aggregate. Different traversal algorithms possible.",
+      "category": "Iterator"
+    },
+    {
+      "question": "What is the Chain of Responsibility Pattern?",
+      "answer": "Chain of Responsibility: Pass request along chain of handlers. Each handler decides to process request or pass to next. Decouples sender from specific receiver.",
+      "details": "Structure: Handler (interface + successor link), ConcreteHandler (handles or forwards). Example: Event bubbling in UI, middleware pipelines, approval workflows, exception handling. Can have one or multiple handlers process request.",
+      "category": "Chain of Responsibility"
+    },
+    {
+      "question": "What is the Mediator Pattern?",
+      "answer": "Mediator: Define object that encapsulates how objects interact. Promotes loose coupling - objects don't refer to each other directly, communicate via mediator.",
+      "details": "Structure: Mediator (interface), ConcreteMediator (coordinates colleagues), Colleague (knows mediator, communicates through it). Example: Chat room, air traffic control, dialog box coordinating widgets. Reduces many-to-many to many-to-one relationships.",
+      "category": "Mediator"
+    },
+    {
+      "question": "What is the Memento Pattern?",
+      "answer": "Memento: Capture object's internal state so it can be restored later, without exposing internal structure. Enables undo, checkpoints, snapshots.",
+      "details": "Structure: Originator (creates/restores from memento), Memento (stores internal state), Caretaker (holds mementos, doesn't examine contents). Example: Editor undo, game save states, transaction rollback. Memento should be opaque to all but Originator.",
+      "category": "Memento"
+    },
+    {
+      "question": "How do you choose which behavioral pattern to use?",
+      "answer": "Strategy: Swap algorithms. Observer: Notify of changes. Command: Encapsulate actions, undo. Template Method: Vary steps of fixed algorithm. State: Behavior varies by state. Iterator: Traverse collection. Chain: Handle by one of many. Mediator: Coordinate interactions.",
+      "details": "Decision: Need to swap behavior? → Strategy/State. Need notifications? → Observer. Need undo? → Command/Memento. Need to vary algorithm steps? → Template Method. Need to traverse? → Iterator. Need loose coupling in interactions? → Mediator/Chain of Responsibility.",
+      "category": "Comparison"
+    }
+  ]
+}

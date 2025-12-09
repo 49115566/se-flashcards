@@ -1,0 +1,98 @@
+{
+  "id": "architectural-styles",
+  "title": "Software Architectural Styles",
+  "description": "Layered, client-server, MVC, microservices, event-driven, and other architectural patterns",
+  "category": "architecture",
+  "cards": [
+    {
+      "question": "What is an Architectural Style/Pattern and how do you choose one?",
+      "answer": "Architectural style: Recurring organization of components and connectors that solves common problems. Choose based on: Quality attributes needed, problem domain, team expertise, constraints.",
+      "details": "Styles provide proven solutions to architectural problems. Most systems combine multiple styles. Selection criteria: Scalability needs, team distribution, performance requirements, maintainability priorities, integration needs. No universal 'best' style.",
+      "category": "Fundamentals"
+    },
+    {
+      "question": "What is Layered Architecture and what are its benefits/drawbacks?",
+      "answer": "Layered: System organized in horizontal layers, each providing services to layer above. Common: Presentation → Business Logic → Data Access → Database. Benefits: Separation of concerns, testability. Drawbacks: Performance overhead, rigid structure.",
+      "details": "Rules: Layer can only call layer directly below (strict) or any lower layer (relaxed). Changes isolated to layer. Good for: Business applications, team specialization. Variations: Clean Architecture, Hexagonal Architecture add more structure around dependencies.",
+      "category": "Layered"
+    },
+    {
+      "question": "What is Client-Server Architecture?",
+      "answer": "Client-Server: Clients request services from centralized servers. Server manages shared resources. Benefits: Centralized data, easier maintenance, security control. Drawbacks: Server bottleneck, single point of failure.",
+      "details": "Variations: Thin client (minimal client logic), Thick/Fat client (significant client processing), 2-tier (direct DB access), 3-tier/n-tier (middle tier). Modern web apps are client-server with browser as client, web server providing API.",
+      "category": "Client-Server"
+    },
+    {
+      "question": "What is MVC (Model-View-Controller) and how do components interact?",
+      "answer": "MVC separates: Model (data/logic), View (presentation), Controller (handles input, coordinates). User → Controller → Model → View → User. Benefits: Separation of concerns, multiple views of same data, parallel development.",
+      "details": "Model: Business logic, data, state - no UI knowledge. View: Displays model data - no business logic. Controller: Handles input, updates model, selects view. Variations: MVP (Presenter mediates), MVVM (ViewModel with binding). Web MVC: Request → Controller → Model → View → Response.",
+      "category": "MVC"
+    },
+    {
+      "question": "What is Microservices Architecture and when should you use it?",
+      "answer": "Microservices: System as collection of small, independently deployable services, each running its own process, communicating via lightweight protocols (HTTP/messaging). Use when: Need independent scaling, large teams, frequent deployment.",
+      "details": "Characteristics: Single responsibility per service, own database, API-based communication, decentralized governance. Benefits: Scalability, technology diversity, team autonomy, fault isolation. Drawbacks: Distributed system complexity, network latency, data consistency challenges, operational overhead.",
+      "category": "Microservices"
+    },
+    {
+      "question": "What is the difference between Microservices and Monolithic architecture?",
+      "answer": "Monolith: Single deployable unit, shared database, in-process calls. Microservices: Multiple deployable units, database per service, network calls. Monolith simpler to start, Microservices scale better.",
+      "details": "Start monolithic, extract microservices when needed (Martin Fowler). Microservice tradeoffs: Distributed transactions, eventual consistency, service discovery, API versioning. Monolith tradeoffs: Harder to scale specific functions, technology lock-in, deployment coupling.",
+      "category": "Microservices"
+    },
+    {
+      "question": "What is Event-Driven Architecture (EDA)?",
+      "answer": "EDA: Components communicate through events - asynchronous messages about things that happened. Producer publishes events, consumers react. Benefits: Loose coupling, scalability, responsiveness.",
+      "details": "Patterns: Event notification (just signal), Event-carried state transfer (include data), Event sourcing (events as source of truth), CQRS (separate read/write models). Technologies: Message queues (RabbitMQ), Event streaming (Kafka). Challenges: Event ordering, debugging, eventual consistency.",
+      "category": "Event-Driven"
+    },
+    {
+      "question": "What is Pipe and Filter Architecture?",
+      "answer": "Pipe and Filter: Data flows through sequence of processing components (filters) connected by pipes. Each filter transforms data and passes to next. Benefits: Reusability, parallelism, flexibility in recombining filters.",
+      "details": "Examples: Unix commands (ls | grep | sort), compilers (lexer → parser → optimizer → code gen), data processing pipelines. Filters should be independent, no shared state. Drawbacks: Overhead of data transformation, not good for interactive systems.",
+      "category": "Pipe and Filter"
+    },
+    {
+      "question": "What is Service-Oriented Architecture (SOA)?",
+      "answer": "SOA: System as collection of services that communicate over network. Services are self-contained, have defined interfaces, can be discovered and composed. Precursor to microservices.",
+      "details": "SOA vs Microservices: SOA typically uses ESB (Enterprise Service Bus), shared databases, SOAP/XML. Microservices: Lightweight protocols, database per service, REST/JSON. SOA often for enterprise integration. Both promote loose coupling and reusability.",
+      "category": "SOA"
+    },
+    {
+      "question": "What is Hexagonal Architecture (Ports and Adapters)?",
+      "answer": "Hexagonal: Core business logic in center, surrounded by ports (interfaces) and adapters (implementations). Dependencies point inward. Isolates domain from infrastructure concerns.",
+      "details": "Ports: Define interfaces for interactions (input ports for use cases, output ports for external systems). Adapters: Implement ports for specific technologies (REST adapter, DB adapter). Benefits: Testable domain logic, swappable infrastructure. Related: Clean Architecture, Onion Architecture.",
+      "category": "Hexagonal"
+    },
+    {
+      "question": "What is the Repository Pattern and where does it fit architecturally?",
+      "answer": "Repository: Mediates between domain and data mapping layers. Provides collection-like interface for domain objects, hiding database details. Domain logic uses Repository interface, not database directly.",
+      "details": "Benefits: Domain stays pure, easier testing (mock repository), database swappable. Repository methods: Add, Remove, Find, FindById, FindByCriteria. Often combined with Unit of Work pattern for transaction management. Part of data access layer.",
+      "category": "Patterns"
+    },
+    {
+      "question": "What is the Strangler Fig Pattern and when do you use it?",
+      "answer": "Strangler: Gradually replace legacy system by incrementally building new system alongside, routing traffic to new components as ready. Eventually 'strangles' old system.",
+      "details": "Use when: Migrating from monolith to microservices, replacing legacy systems. Steps: 1) Identify functional slice, 2) Build new component, 3) Route traffic to new component, 4) Repeat until legacy retired. Reduces risk vs big-bang rewrite. Requires facade/proxy to route requests.",
+      "category": "Migration Patterns"
+    },
+    {
+      "question": "What is CQRS (Command Query Responsibility Segregation)?",
+      "answer": "CQRS: Separate read model from write model. Commands (writes) go to one model, Queries (reads) go to another, potentially different database. Benefits: Optimize reads/writes independently, scalability.",
+      "details": "Often paired with Event Sourcing. Write model handles commands, generates events. Read model(s) built from events, optimized for query patterns. Complexity tradeoff: Two models to maintain, eventual consistency. Use when read/write patterns differ significantly.",
+      "category": "CQRS"
+    },
+    {
+      "question": "How do you compare architectural styles for a given problem?",
+      "answer": "Compare based on: Quality attribute impact (scalability, maintainability, performance), team capabilities, operational requirements, integration needs, time/budget constraints, expected evolution.",
+      "details": "Create comparison matrix: List styles vs. criteria. Score each combination. Consider: What's most important for this system? What constraints exist? What's team's experience? No perfect style - understand tradeoffs. Document decision in ADR.",
+      "category": "Decision Making"
+    },
+    {
+      "question": "What is the difference between synchronous and asynchronous architectural communication?",
+      "answer": "Synchronous: Caller waits for response (HTTP request/response, RPC). Asynchronous: Caller continues without waiting (message queues, events). Choose based on: Coupling needs, performance, reliability requirements.",
+      "details": "Sync benefits: Simpler programming model, immediate feedback. Async benefits: Better decoupling, handles load spikes, fault tolerance. Async challenges: Complexity, eventual consistency, harder debugging. Many systems use both - sync for queries, async for commands/events.",
+      "category": "Communication"
+    }
+  ]
+}

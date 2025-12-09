@@ -1,0 +1,92 @@
+{
+  "id": "databases",
+  "title": "Relational Databases & Normalization",
+  "description": "E-R modeling, normalization forms, functional dependencies, and SQL fundamentals",
+  "category": "requirements",
+  "cards": [
+    {
+      "question": "What is a relational database and how do you locate any data element?",
+      "answer": "Data stored in 2-D tables associated by shared attributes (keys). Any data element can be found using: 1) Table name, 2) Attribute name, 3) Primary key value.",
+      "details": "Key concepts: Attribute = characteristic of entity. Entity = object/concept/event. Row/Record = specific characteristics of one entity. Table = collection of records. Database = collection of tables.",
+      "category": "RDB Fundamentals"
+    },
+    {
+      "question": "What are the three types of cardinality relationships and when do you use each?",
+      "answer": "1) One-to-One: Each instance relates to exactly one other instance. 2) One-to-Many: One instance relates to many of another. 3) Many-to-Many: Many instances relate to many others.",
+      "details": "Implementation: One-to-Many = Put FK in the 'many' table pointing to PK of 'one' table. Many-to-Many = Requires junction/association table with FKs to both tables. One-to-One = FK can go in either table.",
+      "category": "E-R Model"
+    },
+    {
+      "question": "What is the difference between Total and Partial Participation in entity relationships?",
+      "answer": "Total Participation: Every instance of entity MUST participate in relationship. Partial Participation: NOT every instance must participate.",
+      "details": "Example: If every department MUST have a manager → Department has total participation in 'Manages' relationship. If not every employee manages a department → Employee has partial participation. This affects database constraints.",
+      "category": "E-R Model"
+    },
+    {
+      "question": "When should something be modeled as an Entity vs. an Attribute?",
+      "answer": "Model as Attribute: Single value per entity, don't need to query by it. Model as Entity: Multiple values per entity (set-valued), OR structure matters for queries.",
+      "details": "Example: Employee address - If just storing one address, can be attribute. If employee can have multiple addresses OR you need to query by city → make Address an entity. Attributes must have atomic (indivisible) values.",
+      "category": "E-R Model"
+    },
+    {
+      "question": "What is normalization and what are its goals?",
+      "answer": "Normalization is restructuring tables to eliminate redundancy and avoid database anomalies. Goals: Scalar/atomic values, no redundancy, minimal nulls, minimal information loss.",
+      "details": "Why normalize? Eliminate data anomalies (insertion, update, deletion), Reduce redundancy, Improve data integrity, Facilitate query optimization. Higher normal form = Less redundancy, More tables, More complexity.",
+      "category": "Normalization"
+    },
+    {
+      "question": "What is First Normal Form (1NF)?",
+      "answer": "1NF requires: Primary key exists, All attributes have atomic (non-composite) values - no multivalued or nested attributes.",
+      "details": "Example violation: Employee table with 'PhoneNumbers' column containing multiple phone numbers. Fix: Create separate Phone table with FK to Employee. 1NF is considered part of the definition of a relation in modern databases.",
+      "category": "Normalization"
+    },
+    {
+      "question": "What is Second Normal Form (2NF) and what problem does it solve?",
+      "answer": "2NF requires: Already in 1NF AND every non-prime attribute is FULLY functionally dependent on the primary key (no partial dependencies).",
+      "details": "Partial dependency: When non-key attribute depends on only PART of a composite key. Example: {SSN, ProjectNum} → EmployeeName is partial because SSN alone → EmployeeName. Fix: Split into separate tables to eliminate partial dependencies.",
+      "category": "Normalization"
+    },
+    {
+      "question": "What is Third Normal Form (3NF) and what problem does it solve?",
+      "answer": "3NF requires: Already in 2NF AND no transitive dependencies (no non-prime attribute depends on another non-prime attribute).",
+      "details": "Transitive dependency: X → Y → Z where Y is not a key. Example: SSN → DeptNum → DeptManagerSSN. Fix: Create Department table with DeptNum as key, move DeptManagerSSN there. Eliminates update anomalies.",
+      "category": "Normalization"
+    },
+    {
+      "question": "What is BCNF (Boyce-Codd Normal Form)?",
+      "answer": "BCNF requires: For every functional dependency X → A, X must be a superkey of the relation (X can determine every attribute in the table).",
+      "details": "BCNF is stricter than 3NF. Handles cases where 3NF doesn't eliminate all redundancy. Superkey = Set of attributes that uniquely identifies a tuple. Every table in BCNF is also in 3NF, but not vice versa.",
+      "category": "Normalization"
+    },
+    {
+      "question": "What is a Functional Dependency (FD) and what does X → Y mean?",
+      "answer": "X → Y means 'X functionally determines Y' - if two tuples have same X value, they MUST have same Y value.",
+      "details": "Examples: SSN → EmployeeName (SSN determines name). {SSN, ProjectNum} → Hours (both needed to determine hours). FDs are constraints derived from real-world meaning of attributes. Armstrong's Rules: Reflexive (Y⊆X → X→Y), Augmentation (X→Y → XZ→YZ), Transitive (X→Y, Y→Z → X→Z).",
+      "category": "Functional Dependencies"
+    },
+    {
+      "question": "What SQL clauses are used in a SELECT statement and what does each do?",
+      "answer": "SELECT (columns to return), FROM (tables), WHERE (row conditions), GROUP BY (grouping columns), HAVING (group conditions), ORDER BY (sort order).",
+      "details": "Aggregate functions: COUNT, SUM, MIN, MAX, AVG. GROUP BY required when mixing aggregate and non-aggregate columns. HAVING filters groups (like WHERE for groups). Example: SELECT State, COUNT(*) FROM Customer GROUP BY State HAVING COUNT(*) > 5 ORDER BY State;",
+      "category": "SQL"
+    },
+    {
+      "question": "What are the differences between INSERT, UPDATE, and DELETE statements?",
+      "answer": "INSERT adds new rows. UPDATE modifies existing rows. DELETE removes rows. All can use WHERE clause to target specific rows.",
+      "details": "INSERT: INSERT INTO Table VALUES (...) or INSERT INTO Table (cols) VALUES (...). UPDATE: UPDATE Table SET col=value WHERE condition. DELETE: DELETE FROM Table WHERE condition. Without WHERE, UPDATE/DELETE affect ALL rows - dangerous!",
+      "category": "SQL"
+    },
+    {
+      "question": "Given this table with dependencies, what normal form is it in? Employee(SSN, Name, DeptNum, DeptName) where SSN→Name, SSN→DeptNum, DeptNum→DeptName",
+      "answer": "This table is in 2NF but NOT 3NF due to transitive dependency: SSN → DeptNum → DeptName.",
+      "details": "Fix: Split into Employee(SSN, Name, DeptNum) and Department(DeptNum, DeptName). Now both tables are in 3NF. The transitive dependency through DeptNum is eliminated.",
+      "category": "Normalization"
+    },
+    {
+      "question": "Summary: What does each normal form require?",
+      "answer": "1NF: Primary key, atomic values. 2NF: 1NF + no partial dependencies. 3NF: 2NF + no transitive dependencies. BCNF: Every determinant is a superkey (no backward dependencies).",
+      "details": "Most industry databases should be at least 3NF to avoid anomalies. BCNF provides even stronger guarantees. Denormalization may be done deliberately for performance, but understand the tradeoffs.",
+      "category": "Normalization"
+    }
+  ]
+}

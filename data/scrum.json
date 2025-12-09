@@ -1,0 +1,80 @@
+{
+  "id": "scrum",
+  "title": "Scrum Framework",
+  "description": "Scrum roles, ceremonies, artifacts, and user stories",
+  "category": "process",
+  "cards": [
+    {
+      "question": "What are the four main Scrum meetings (ceremonies)?",
+      "answer": "1) Sprint Planning - decide what to tackle for the sprint, 2) Daily Scrum - quick daily touch base, 3) Sprint Retrospective - review sprint process, 4) Sprint Review - review product.",
+      "details": "Sprint Planning: Entire team decides together what to tackle. Daily Scrum: What have I done? What am I doing next? What am I stuck on? Sprint Retrospective: Review the process itself (how we worked). Sprint Review: Review the product delivered in the sprint.",
+      "category": "Scrum Ceremonies"
+    },
+    {
+      "question": "What is the difference between the Product Backlog and Sprint Backlog?",
+      "answer": "Product Backlog contains ALL features expected for the product. Sprint Backlog contains only the features that will be worked on in a SPECIFIC sprint.",
+      "details": "Sprint Backlog requirements: Should be broken down into discrete tasks, Fine-grained, Estimated, Assigned to individual team members, Acceptance criteria should be defined. User stories are often used to express backlog items.",
+      "category": "Scrum Artifacts"
+    },
+    {
+      "question": "What is the correct format for a user story?",
+      "answer": "\"As a [role], I want [function], so that [value]\"",
+      "details": "Should fit on a 3x5 card. Represents an open dialog between everyone working on the project and the client. Split up Epic Stories if needed. A confirmation criterion shows when the task is considered completed (could be automated or manual).",
+      "category": "User Stories"
+    },
+    {
+      "question": "What does the INVEST acronym mean for evaluating user stories?",
+      "answer": "Independent, Negotiable, Valuable, Estimable, Small, Testable",
+      "details": "Independent: Schedule in any order, not overlapping. Negotiable: Details negotiated during development, captures essence not details. Valuable: Must have value to someone (customer). Estimable: Helps keep size small, ensures negotiated correctly. Small: Fit on 3x5 card, at most two person-weeks. Testable: Ensures understanding, we know when 'Done'.",
+      "category": "User Stories"
+    },
+    {
+      "question": "A user story is 'Unable to test'. What does this indicate according to INVEST?",
+      "answer": "If a user story is unable to be tested, it indicates we don't understand the task well enough. Testability ensures understanding and lets us know when we can mark the task 'Done'.",
+      "details": "Testing criteria should be defined upfront. Without testability, there's no clear definition of completion. This often means the story needs to be refined, broken down, or better understood through stakeholder discussion.",
+      "category": "User Stories"
+    },
+    {
+      "question": "Write a user story for: 'Ability to call for help from the community'",
+      "answer": "\"As a user, I can create a freelancer job to call for help\" or \"As a user, I can publish a job, accept applications, select a candidate to sign contract, and close when finished.\"",
+      "details": "This maps to the feature 'Outsource a job' from a user need. The user story should capture the essence of what the user wants to accomplish and why it provides value.",
+      "category": "User Stories"
+    },
+    {
+      "question": "What roles and responsibilities should a Scrum team establish?",
+      "answer": "Possible roles include: Coordinator (facilitates meetings), Scribe (documents decisions), Checker (reviews quality), Monitor (tracks progress). Roles should rotate every assignment.",
+      "details": "Teamwork expectations: Meet initially and regularly, Review team policy, Divide work and integrate, Set and document clear responsibilities and expectations, Every team member should understand the entire solution. Make agreements explicit and transparent. Openly report even minor team issues.",
+      "category": "Scrum Roles"
+    },
+    {
+      "question": "What tools support Scrum planning and team communication?",
+      "answer": "Project management: Asana, Trello, Jira, Microsoft Project. Documentation: Github Wiki, Google docs, OneDrive. Communication: Email, Slack, Facebook groups.",
+      "details": "Jira and Trello are particularly popular for managing Scrum boards visually. These tools help visualize work, track sprint progress, manage backlogs, and facilitate team coordination.",
+      "category": "Scrum Tools"
+    },
+    {
+      "question": "What is the difference between Sprint Review and Sprint Retrospective?",
+      "answer": "Sprint Review focuses on the PRODUCT (what was built), while Sprint Retrospective focuses on the PROCESS (how the team worked).",
+      "details": "Sprint Review: Demonstrates completed work to stakeholders, gathers feedback, may adjust product backlog. Sprint Retrospective: Team reflects on what went well, what could improve, and creates action items for process improvement. Both are essential for continuous improvement.",
+      "category": "Scrum Ceremonies"
+    },
+    {
+      "question": "You have a user story that's estimated at 4 weeks of work. What should you do?",
+      "answer": "Split it into smaller user stories. According to INVEST, stories should be Small - at most two person-weeks of work.",
+      "details": "If a story is too big (an 'Epic'), it becomes hard to estimate accurately and impossible to complete in a single sprint. Break it down into smaller, independent stories that each deliver value. This also helps with: better estimates, clearer priorities, faster feedback, and easier testing.",
+      "category": "User Stories"
+    },
+    {
+      "question": "What questions should each team member answer in a Daily Scrum?",
+      "answer": "1) What have I done since the last meeting? 2) What am I doing next? 3) What am I stuck on/need help with?",
+      "details": "Daily Scrum is a quick, time-boxed meeting (usually 15 minutes). It's for synchronization, not problem-solving. Any impediments identified should be addressed after the meeting. The focus is on transparency and identifying blockers early.",
+      "category": "Scrum Ceremonies"
+    },
+    {
+      "question": "Convert this feature into a user story with acceptance criteria: 'Search for papers on a topic'",
+      "answer": "User Story: \"As a researcher, I can search for recommended papers to read on a topic so that I can find relevant literature for my work.\" Acceptance Criteria: Search returns relevant results within 2 seconds, results can be filtered by date/author/journal, user can save search results.",
+      "details": "Acceptance criteria define when the story is complete. They should be specific, measurable, and testable. Good acceptance criteria prevent scope creep and ensure everyone agrees on what 'done' means.",
+      "category": "User Stories"
+    }
+  ]
+}

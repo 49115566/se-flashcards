@@ -1,0 +1,98 @@
+{
+  "id": "ml-in-se",
+  "title": "Machine Learning in Software Engineering",
+  "description": "ML fundamentals for SE, applying ML techniques, and software engineering for ML systems",
+  "category": "ml",
+  "cards": [
+    {
+      "question": "How does ML differ from traditional software development?",
+      "answer": "Traditional: Logic explicitly programmed, deterministic output. ML: Logic learned from data, probabilistic output. ML systems are data-dependent - behavior changes with training data. Testing, debugging, maintenance fundamentally different.",
+      "details": "Traditional: if-then rules, algorithms coded. ML: Model learns patterns from examples. Challenges: Non-determinism, data quality issues, model drift, harder to debug/test. SE for ML requires new practices for data management, model versioning, monitoring.",
+      "category": "Fundamentals"
+    },
+    {
+      "question": "What are the main types of Machine Learning?",
+      "answer": "Supervised: Learn from labeled examples (classification, regression). Unsupervised: Find patterns in unlabeled data (clustering, dimensionality reduction). Reinforcement: Learn through trial and error with rewards.",
+      "details": "Supervised examples: Spam detection (labeled emails), price prediction. Unsupervised: Customer segmentation, anomaly detection. Reinforcement: Game playing, robotics. Semi-supervised: Mix of labeled and unlabeled data. Choose based on: Problem type, data availability, desired outcome.",
+      "category": "ML Types"
+    },
+    {
+      "question": "What is the ML development lifecycle?",
+      "answer": "ML lifecycle: Problem Definition → Data Collection → Data Preparation → Feature Engineering → Model Training → Evaluation → Deployment → Monitoring → Iterate. Data and iteration are central.",
+      "details": "80% of time on data (collection, cleaning, preparation). Model training often quickest part. Continuous cycle: Monitor in production → detect issues → collect new data → retrain. MLOps: DevOps practices for ML (versioning data/models, automated pipelines, monitoring).",
+      "category": "Process"
+    },
+    {
+      "question": "What is the role of data in ML systems?",
+      "answer": "Data is critical: Model quality depends on data quality. Garbage in = garbage out. Data determines what model can learn. Need: Sufficient quantity, representative samples, quality labels, appropriate features.",
+      "details": "Data challenges: Collection, labeling costs, bias, privacy, versioning, drift over time. Data quality issues: Missing values, outliers, noise, class imbalance. Feature engineering: Transform raw data into useful model inputs. Data versioning essential for reproducibility.",
+      "category": "Data"
+    },
+    {
+      "question": "What is overfitting and how do you prevent it?",
+      "answer": "Overfitting: Model learns training data too well, including noise, performs poorly on new data. Memorizes rather than generalizes. Prevention: More data, simpler model, regularization, validation, cross-validation.",
+      "details": "Signs: High training accuracy, low test accuracy. Prevention techniques: Train/validation/test split, k-fold cross-validation, regularization (L1/L2), dropout (neural nets), early stopping, ensemble methods. Underfitting: Model too simple to capture patterns.",
+      "category": "Training"
+    },
+    {
+      "question": "What is the training/validation/test split and why is it important?",
+      "answer": "Split data into three sets: Training (learn from), Validation (tune hyperparameters), Test (final evaluation). Test set used ONLY once for unbiased performance estimate. Prevents data leakage and overfitting.",
+      "details": "Typical split: 70/15/15 or 80/10/10. Cross-validation: Multiple train/validation splits for robust estimate. Never use test set for model selection. Data leakage: Information from test set influencing training - leads to overly optimistic results. Stratified sampling for imbalanced data.",
+      "category": "Training"
+    },
+    {
+      "question": "How do you evaluate ML model performance?",
+      "answer": "Classification: Accuracy, Precision, Recall, F1-Score, ROC-AUC. Regression: MSE, MAE, R². Choose metrics based on problem: Precision for false positive cost, Recall for false negative cost. Business metrics matter most.",
+      "details": "Accuracy misleading for imbalanced classes. Precision: Of predicted positive, how many correct? Recall: Of actual positive, how many found? F1: Harmonic mean of precision/recall. Confusion matrix shows TP, TN, FP, FN. ROC-AUC: Performance across thresholds.",
+      "category": "Evaluation"
+    },
+    {
+      "question": "What is model drift and how do you handle it?",
+      "answer": "Model drift: Model performance degrades over time as real-world data distribution changes. Types: Data drift (input distribution changes), Concept drift (relationship between input and output changes). Monitoring and retraining essential.",
+      "details": "Causes: Changing user behavior, seasonality, external events, new patterns. Detection: Monitor prediction distribution, accuracy metrics, feature distributions. Handling: Automated monitoring, trigger retraining, A/B testing new models, online learning. Schedule regular model refresh.",
+      "category": "Operations"
+    },
+    {
+      "question": "What is MLOps and why is it needed?",
+      "answer": "MLOps: Practices for reliable ML system lifecycle - development, deployment, monitoring. Combines ML, DevOps, Data Engineering. Addresses: Reproducibility, versioning (code, data, models), automated pipelines, monitoring, governance.",
+      "details": "MLOps tools: MLflow (tracking), DVC (data versioning), Kubeflow (pipelines), Feature stores. Challenges unique to ML: Data versioning, experiment tracking, model registry, feature stores, inference serving, A/B testing. Without MLOps: 'Works on my laptop' syndrome.",
+      "category": "Operations"
+    },
+    {
+      "question": "What are Feature Stores and why use them?",
+      "answer": "Feature Store: Centralized repository for storing, managing, serving ML features. Solves: Feature reuse, consistency between training and serving, feature versioning, documentation.",
+      "details": "Problems addressed: Feature engineering repeated across teams, training/serving skew (different feature computation), no feature discovery. Components: Feature transformation, storage, serving layer. Examples: Feast, Tecton, AWS SageMaker Feature Store. Enables: Reusable, consistent, documented features.",
+      "category": "Infrastructure"
+    },
+    {
+      "question": "How do you test ML systems?",
+      "answer": "ML testing requires multiple levels: Data testing (quality, distribution), Model testing (accuracy, fairness, robustness), Infrastructure testing (pipeline, serving). Traditional unit tests still apply to non-ML code.",
+      "details": "Data tests: Schema validation, distribution checks, completeness. Model tests: Performance metrics, fairness across groups, adversarial robustness. Pipeline tests: End-to-end runs, reproducibility. Monitoring in production: Performance degradation, data drift. No single test guarantees correctness.",
+      "category": "Testing"
+    },
+    {
+      "question": "What is bias in ML and how do you address it?",
+      "answer": "ML bias: Systematic unfairness in model predictions, often affecting protected groups. Sources: Biased training data, proxy variables, sampling bias, labeling bias. Addressing: Diverse data, fairness metrics, bias detection, debiasing techniques.",
+      "details": "Examples: Hiring models discriminating by gender, facial recognition performing worse on minorities. Detection: Measure performance across subgroups. Mitigation: Balanced training data, fairness constraints, post-processing. Ethical and legal implications. Fairness definitions often conflict - explicit choices required.",
+      "category": "Ethics"
+    },
+    {
+      "question": "What is the difference between ML models and traditional software for software engineers?",
+      "answer": "Traditional: Code defines behavior, deterministic, explicit logic. ML: Data defines behavior, probabilistic, learned patterns. Testing: Unit tests vs statistical evaluation. Debugging: Step through code vs analyze predictions/data.",
+      "details": "SE implications: Version control data and models (not just code), monitoring for drift, A/B testing models, handling uncertainty in outputs, explainability requirements. ML systems are software systems - still need: Good architecture, testing, deployment practices. Plus ML-specific practices.",
+      "category": "SE Practices"
+    },
+    {
+      "question": "What are common ML applications in software engineering itself?",
+      "answer": "ML in SE: Code completion (Copilot), bug prediction, test case generation, code review automation, defect detection, effort estimation, log analysis, anomaly detection. ML assists developers.",
+      "details": "Code completion: LLMs predicting next code. Bug prediction: Historical data predicts defect-prone files. Test generation: Generate test cases from code/specs. Static analysis: Learn patterns of bugs. Effort estimation: Predict project duration. These augment, not replace, developer judgment.",
+      "category": "Applications"
+    },
+    {
+      "question": "What are key considerations when deploying ML models to production?",
+      "answer": "Deployment considerations: Latency requirements, scalability, model versioning, A/B testing capability, monitoring, rollback ability, resource costs, security, explainability.",
+      "details": "Serving options: Batch (periodic predictions), Real-time (API), Edge (on-device). Model formats: ONNX, TensorFlow SavedModel, pickle. Containerization for consistency. Shadow mode: New model predicts but doesn't serve - compare to production. Canary deployments for gradual rollout.",
+      "category": "Deployment"
+    }
+  ]
+}
