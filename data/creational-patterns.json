@@ -65,9 +65,9 @@
       "category": "Prototype"
     },
     {
-      "question": "What is the difference between shallow copy and deep copy in Prototype Pattern?",
-      "answer": "Shallow copy: Copy object but share references to nested objects. Deep copy: Copy object AND recursively copy all nested objects. Prototype typically needs deep copy for true independence.",
-      "details": "Shallow copy problem: Modifying nested object affects both original and copy. Implementation: Override clone() carefully, decide per field whether to share or copy. Java: Default clone() is shallow. Consider copy constructor or serialization for deep copy.",
+      "question": "How does a Prototype cache improve performance?",
+      "answer": "Prototype cache stores instance objects (originals) and returns clones on request. Instead of creating a new object from scratch, the system clones a cached prototype, reducing expensive creation costs.",
+      "details": "Slides show: store original shape objects in a map/hashtable, and return cloned copies when requested. Use when creation is costly (DB reads, complex setup). Cache reduces DB calls and improves performance.",
       "category": "Prototype"
     },
     {
@@ -77,16 +77,16 @@
       "category": "Comparison"
     },
     {
-      "question": "What is the Simple Factory idiom and how does it differ from Factory Method?",
-      "answer": "Simple Factory: Static method or separate class that creates objects based on parameters. NOT a GoF pattern. Differs from Factory Method: No inheritance, single factory class makes decisions.",
-      "details": "Example: ShapeFactory.createShape('circle') returns Circle. Benefits: Centralizes creation logic, removes 'new' from client code. Drawbacks: Adding new types requires modifying factory (violates Open-Closed). Factory Method adds extensibility via subclassing.",
-      "category": "Factory Variations"
+      "question": "Which creational patterns are recommended for the restaurant app scenarios in the slides?",
+      "answer": "Slides recommend: Singleton for a multi-threaded backend (shared manager), Factory Method for extensible menu creation, Builder for complex meal assembly, and Prototype for predefined lunch box menus (clone prototypes).",
+      "details": "These scenarios illustrate common use cases: Singleton to manage shared state safely; Factory Method to allow extensibility for dish types; Builder to assemble complex orders; Prototype to clone preset meal templates for performance.",
+      "category": "Examples"
     },
     {
-      "question": "How does Dependency Injection relate to creational patterns?",
-      "answer": "Dependency Injection (DI): Instead of creating dependencies, receive them from external source (container/framework). Alternative to explicit factory patterns. Objects don't create their dependencies - they're injected.",
-      "details": "DI benefits: Very loose coupling, easy testing with mocks, centralized object lifecycle management. Frameworks: Spring (Java), Angular (TypeScript). DI containers often use Factory internally. Modern approach often preferred over manual factory patterns.",
-      "category": "Modern Patterns"
+      "question": "What are the essential elements that describe a design pattern?",
+      "answer": "Each pattern should include: a Name, the Problem/Intent, the Solution (structure & participants), and the Consequences (tradeoffs & results).",
+      "details": "Slides define pattern elements as Pattern Name, Problem (context), Solution (UML structure or code), and Consequences (benefits, liabilities). These form the minimal documentation for a pattern.",
+      "category": "Overview"
     },
     {
       "question": "Give a concrete example of when to use Abstract Factory over Factory Method.",

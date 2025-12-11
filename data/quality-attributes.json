@@ -8,91 +8,106 @@
       "question": "What are Quality Attributes and why are they important?",
       "answer": "Quality Attributes: Non-functional requirements that describe HOW well system performs its functions. Examples: Performance, Security, Scalability, Maintainability, Reliability. Critical because they drive architectural decisions.",
       "details": "Also called NFRs (Non-Functional Requirements), -ilities. Functional requirements: What system does. Quality attributes: How well it does it. Quality attributes often conflict (security vs usability). Architecture primarily determines achievable quality attribute levels.",
-      "category": "Fundamentals"
+      "category": "Fundamentals",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 44, "endLine": 48 }
     },
     {
-      "question": "What is a Quality Attribute Scenario and what are its parts?",
-      "answer": "Quality Attribute Scenario: Testable requirement for quality attribute. Parts: Stimulus (event), Source (who/what generates it), Environment (system state), Artifact (what's affected), Response (what happens), Response Measure (testable metric).",
-      "details": "Example (Performance): Source: User. Stimulus: Requests page. Environment: Normal operation. Artifact: Web server. Response: Serves page. Measure: Within 2 seconds, 99% of time. Scenarios make quality attributes concrete and testable.",
-      "category": "Quality Scenarios"
+      "question": "What is PLANGuage and how does it help specify quality attributes?",
+      "answer": "PLANGuage is a keyword-driven planning language for writing quantifiable quality attribute specifications (TAG, GIST, SCALE, METER, MUST, PLAN, WISH, PAST). It reduces ambiguity and makes quality attributes testable.",
+      "details": "Examples: TAG: Learnable; GIST: The ease of learning to use the system; SCALE: Time required for a Novice to complete a 1-item order; METER: Stopwatch measurements; MUST/PLAN/WISH specify thresholds and goals. PLANGuage helps convert vague 'fast' goals into measurable statements.",
+      "category": "Quality Scenarios",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 120, "endLine": 152 }
     },
     {
       "question": "What is Performance and what tactics improve it?",
       "answer": "Performance: System's responsiveness - time to respond to events. Metrics: Latency, throughput, response time. Tactics: Caching, resource pooling, concurrency, load balancing, algorithm optimization, reducing computational overhead.",
       "details": "Scenario example: 1000 concurrent users, page load < 3s, 99th percentile. Tactics categories: Control resource demand (reduce work, manage events), Manage resources (increase, introduce concurrency, maintain copies). Tradeoffs: Caching uses memory, concurrency adds complexity.",
-      "category": "Performance"
+      "category": "Performance",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 146, "endLine": 151 }
     },
     {
       "question": "What is Scalability and what are the types?",
       "answer": "Scalability: Ability to handle increased load by adding resources. Vertical (scale up): Bigger hardware. Horizontal (scale out): More instances. Horizontal generally preferred for large systems.",
       "details": "Vertical: Simpler, limited ceiling, single point of failure. Horizontal: Complex (distributed system), nearly unlimited, fault tolerant. Tactics: Stateless services, database sharding, message queues, auto-scaling. Measure: Linear scaling ideal (2x resources = 2x capacity).",
-      "category": "Scalability"
+      "category": "Scalability",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 346, "endLine": 362 }
     },
     {
       "question": "What is Availability and how is it measured?",
       "answer": "Availability: System operational and accessible when needed. Measured as percentage: 99.9% (8.76 hrs/year downtime), 99.99% (52.6 min/year). Tactics: Redundancy, failover, health monitoring, graceful degradation.",
       "details": "MTBF: Mean Time Between Failures. MTTR: Mean Time To Recovery. Availability = MTBF / (MTBF + MTTR). Improve by: Increasing MTBF (prevent failures), Decreasing MTTR (recover faster). Five 9s (99.999%) = 5.26 minutes/year downtime.",
-      "category": "Availability"
+      "category": "Availability",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 232, "endLine": 240 }
     },
     {
       "question": "What is Security and what are its attributes (CIA)?",
-      "answer": "Security: Protecting system from unauthorized access/modification. CIA Triad: Confidentiality (prevent unauthorized disclosure), Integrity (prevent unauthorized modification), Availability (ensure authorized access). Additional: Authentication, Authorization, Non-repudiation.",
-      "details": "Tactics: Detect attacks (intrusion detection, monitors), Resist attacks (authentication, authorization, encryption, input validation), React (revoke access, lockout). Security vs Usability tradeoff. Defense in depth: Multiple security layers.",
+      "answer": "Security: Protection against unauthorized access and misuse. Consider authentication, authorization, data protection, and layered defenses; tradeoffs with usability should be explicit.",
+      "details": "Tactics include access control, encryption, intrusion detection, and recovery. Stronger security measures (complex passwords, 2FA) can reduce usability; design accordingly and document tradeoffs.",
       "category": "Security"
+      ,"slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 66, "endLine": 70 }
     },
     {
       "question": "What is Modifiability and what tactics improve it?",
       "answer": "Modifiability: Ease/cost of making changes to system. Tactics: Reduce coupling, increase cohesion, use interfaces, encapsulation, separation of concerns, use intermediaries, defer binding time.",
       "details": "Measure: Cost/effort to implement specific changes. High modifiability: Localized changes, minimal ripple effects. Low modifiability: Changes cascade through system. Design patterns, SOLID principles improve modifiability. Architectural patterns (layers, microservices) localize change.",
-      "category": "Modifiability"
+      "category": "Modifiability",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 80, "endLine": 84 }
     },
     {
       "question": "What is Reliability and how does it relate to Availability?",
       "answer": "Reliability: Probability system performs correctly over time period. Availability: Probability system is operational at given time. Reliable system can be unavailable (maintenance). Available system can be unreliable (errors during operation).",
       "details": "Reliability metrics: MTBF, failure rate, defect density. Tactics: Fault prevention (good practices), Fault tolerance (redundancy, recovery), Fault removal (testing, debugging), Fault forecasting (analysis). Reliability engineering: Design for failure, expect failures.",
-      "category": "Reliability"
+      "category": "Reliability",
+      "slide_ref": { "file": "wk_9-1_testing.md", "startLine": 215, "endLine": 218 }
     },
     {
       "question": "What is Usability and what makes software usable?",
       "answer": "Usability: Ease of use and learning. Factors: Learnability, Efficiency, Memorability, Error tolerance, Satisfaction. Tactics: Consistent UI, feedback, undo, help systems, task-appropriate design.",
       "details": "Measure: Task completion rate, time on task, error rate, user satisfaction scores. UI/UX is not just 'pretty' - it affects productivity, adoption, errors. Accessibility: Usable by people with disabilities (legal requirement often). User testing essential for usability validation.",
-      "category": "Usability"
+      "category": "Usability",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 69, "endLine": 72 }
     },
     {
       "question": "What is Maintainability and what factors affect it?",
       "answer": "Maintainability: Ease of modifying, fixing, enhancing system. Factors: Code quality, documentation, test coverage, modularity, understandability. High maintainability = lower cost of ownership.",
-      "details": "Sub-characteristics (ISO 25010): Modularity, Reusability, Analysability, Modifiability, Testability. Metrics: Cyclomatic complexity, code coverage, coupling metrics. Technical debt reduces maintainability. Clean code practices, refactoring improve maintainability.",
-      "category": "Maintainability"
+  "details": "Sub-characteristics: Modularity, Reusability, Analysability, Modifiability, Testability. Metrics: Cyclomatic complexity, code coverage, coupling metrics. Technical debt reduces maintainability. Clean code practices and refactoring improve maintainability.",
+      "category": "Maintainability",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 301, "endLine": 304 }
     },
     {
       "question": "What is Testability and how do you improve it?",
       "answer": "Testability: Ease of testing software. High testability: Easy to observe behavior, control inputs, isolate components. Tactics: Dependency injection, interfaces, small focused units, avoid global state.",
       "details": "Testable design: Controllability (set up preconditions), Observability (verify results), Isolation (test independently). Anti-patterns: Tight coupling, static dependencies, hidden dependencies. TDD produces testable code. Testability enables other quality attributes (maintainability, reliability).",
-      "category": "Testability"
+      "category": "Testability",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 76, "endLine": 80 }
     },
     {
       "question": "What is Interoperability and why is it important?",
       "answer": "Interoperability: Ability to exchange information and use exchanged information with other systems. Standards, protocols, interfaces enable interoperability. Important for: Integration, ecosystem participation, avoiding vendor lock-in.",
-      "details": "Tactics: Use standards (REST, JSON, XML), well-defined APIs, adapters for translation, message queues for async integration. Levels: Technical (connect), Syntactic (format), Semantic (meaning). Industry standards (HL7 for healthcare, SWIFT for banking).",
-      "category": "Interoperability"
+  "details": "Tactics: Use standards (e.g., REST/JSON), well-defined APIs, adapters for translation, and message queues for asynchronous integration. Levels: Technical (connect), Syntactic (format), Semantic (meaning).",
+      "category": "Interoperability",
+      "slide_ref": { "file": "wk_8-1_api_mashup.md", "startLine": 21, "endLine": 31 }
     },
     {
       "question": "How do quality attributes conflict and how do you make tradeoffs?",
       "answer": "Quality attributes often conflict: Security vs Usability, Performance vs Modifiability, Cost vs everything. Tradeoffs require: Understanding priorities, stakeholder input, explicit decisions, documentation.",
       "details": "Examples: Encryption adds latency (security vs performance). Caching reduces modifiability (performance vs modifiability). More testing increases time to market. Prioritize based on: Business value, risk, stakeholder needs. Use Architecture Tradeoff Analysis Method (ATAM). Document decisions in ADRs.",
-      "category": "Tradeoffs"
+      "category": "Tradeoffs",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 384, "endLine": 390 }
     },
     {
-      "question": "What is the ISO 25010 quality model?",
-      "answer": "ISO 25010: Standard software quality model. 8 characteristics: Functional Suitability, Performance Efficiency, Compatibility, Usability, Reliability, Security, Maintainability, Portability. Each has sub-characteristics.",
-      "details": "Provides common vocabulary for quality. Functional Suitability: Completeness, correctness, appropriateness. Performance: Time behavior, resource utilization, capacity. Use for: Requirements specification, quality evaluation, comparison. Helps ensure comprehensive quality consideration.",
-      "category": "Standards"
+      "question": "What checklist should you use when specifying quality attributes?",
+      "answer": "When specifying quality attributes, use quantifiable definitions (PLANGuage), consider tradeoffs, choose appropriate design patterns, and define metrics to measure them.",
+      "details": "Checklist: TAG/GIST/SCALE/METER/MUST/PLAN/WISH; consider tradeoffs and architectural impacts; ensure measures and tests are defined and monitoring planned.",
+      "category": "Standards",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 463, "endLine": 468 }
     },
     {
       "question": "How do you specify and measure quality attributes?",
       "answer": "Specify using: Quality attribute scenarios with measurable responses. Measure using: Benchmarks, load tests, security audits, user testing, metrics tools. Continuous monitoring in production.",
-      "details": "Bad: 'System should be fast.' Good: 'Page load < 2 seconds for 95% of requests under 1000 concurrent users.' Tools: JMeter (performance), SonarQube (maintainability), OWASP ZAP (security). Define acceptance criteria upfront. Test quality attributes, not just functionality.",
-      "category": "Measurement"
+  "details": "Bad: 'System should be fast.' Good: 'Page load < 2 seconds for 95% of requests under 1000 concurrent users.' Define acceptance criteria and use benchmarking, static analysis, security audits, and user testing to validate quality attributes.",
+      "category": "Measurement",
+      "slide_ref": { "file": "wk_10-1_software_quality_attributes.md", "startLine": 466, "endLine": 468 }
     }
   ]
 }

@@ -7,92 +7,107 @@
     {
       "question": "What is Object-Oriented Analysis (OOA) and what are its goals?",
       "answer": "OOA identifies and describes objects/concepts in the problem domain, establishing their attributes, behaviors, and relationships. Goal: Model the problem domain before designing a solution.",
-      "details": "Key outputs: Domain Model, Conceptual Class Diagram, CRC Cards, System Sequence Diagrams. Focus is on WHAT the system needs to do (analysis), not HOW it will do it (design). Analysis model should be implementation-independent.",
-      "category": "OOA Fundamentals"
+      "details": "Key outputs: Use case specifications, analysis classes, interaction diagrams, and class diagrams. Focus is on WHAT the system needs to do (analysis), not HOW (design). The analysis model should be implementation-independent.",
+      "category": "OOA Fundamentals",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 26, "endLine": 68 }
     },
     {
       "question": "What is the difference between OOA and OOD?",
-      "answer": "OOA (Analysis): Focuses on WHAT - understanding the problem domain, identifying concepts, requirements. OOD (Design): Focuses on HOW - defining software objects and their collaborations to fulfill requirements.",
-      "details": "Analysis = Investigation of problem/requirements. Design = Conceptual solution that fulfills requirements. Analysis classes represent real-world concepts. Design classes represent software components.",
-      "category": "OOA Fundamentals"
+      "answer": "OOA focuses on WHAT needs to be modeled (domain concepts, responsibilities, interactions); OOD refines the analysis into HOW the system will implement those concepts (software classes, methods, design details).",
+      "details": "Slides show OOAD iteration from requirements → analysis → system design → architecture → component & class design; analysis is implementation-independent while design is solution-oriented.",
+      "category": "OOA Fundamentals",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 26, "endLine": 51 }
     },
     {
-      "question": "What are CRC Cards and what do the three parts represent?",
-      "answer": "CRC = Class-Responsibility-Collaborator. Class: Name of the object. Responsibilities: What the object knows (attributes) and does (behaviors). Collaborators: Other objects this class works with.",
-      "details": "CRC cards are physical index cards used in analysis sessions. Benefits: Simple, tangible, encourages collaboration, easy to modify. Process: Role-play scenarios, passing cards between people representing objects. Helps identify missing classes and misplaced responsibilities.",
-      "category": "CRC Cards"
+      "question": "What is a Use Case Model and what does it contain?",
+      "answer": "A Use Case Model describes functional and non-functional requirements using actors, use cases, system boundaries, and use case specifications that define basic flows and interactions.",
+      "details": "Slides define a Use Case Model as Use Case diagrams and use case specifications; components include actors, use cases, associations, and system boundaries. Example: Course Registration System example in slides.",
+      "category": "Use Case",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 72, "endLine": 122 }
     },
     {
       "question": "How do you identify candidate classes/objects during analysis?",
-      "answer": "1) Noun extraction from requirements/use cases. 2) Domain expertise knowledge. 3) CRC card sessions. 4) Look for tangible things, roles, events, interactions, specifications.",
-      "details": "Filter candidates: Remove duplicates/synonyms, vague terms, attributes masquerading as classes, implementation constructs, operations. Good classes have: Clear responsibility, Multiple attributes, Participate in relationships, Named with noun phrases.",
-      "category": "Domain Modeling"
+      "answer": "Underline noun phrases in use case specifications, leverage domain expertise, and filter candidates by removing duplicates, attributes, and implementation constructs.",
+      "details": "Slides recommend underlining noun clauses in use case specs and applying a filtering approach: remove duplicates, synonyms, implementation constructs and reserve attributes and operations for later.",
+      "category": "Domain Modeling",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 228, "endLine": 236 }
     },
     {
       "question": "What is a Domain Model and what does it contain?",
-      "answer": "A Domain Model is a visual representation of conceptual classes in the problem domain. Contains: Conceptual classes, Associations between classes, Attributes of classes. Does NOT contain methods/operations.",
-      "details": "Domain Model vs. Design Class Diagram: Domain model is analysis-level (problem space), design class diagram is solution-level. Domain model uses problem domain vocabulary, may include classes that won't become software classes.",
-      "category": "Domain Modeling"
+      "answer": "A Domain (analysis) model is a representation of domain concepts, their attributes, and relationships — a problem-space view that omits implementation details.",
+      "details": "Slides show analysis classes, associations, and attributes identified from requirements and stress that Analysis class diagrams focus on WHAT exists in the domain rather than methods or visibility.",
+      "category": "Domain Modeling",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 155, "endLine": 172 }
     },
     {
-      "question": "What are the different types of UML associations and when do you use each?",
-      "answer": "Association: General relationship ('uses', 'knows about'). Aggregation: Whole-part, part can exist independently (hollow diamond). Composition: Strong whole-part, part cannot exist without whole (filled diamond). Dependency: Weaker, temporary relationship (dashed arrow).",
-      "details": "Examples: Library-Book is aggregation (book exists without library). Order-LineItem is composition (line item doesn't exist without order). Use composition when lifecycle is tied to container. Multiplicity shows how many instances participate.",
-      "category": "Associations"
+      "question": "What are common types of UML associations and when do you use them?",
+      "answer": "Associations show relationships between domain classes; use aggregation for loose whole-part, composition when part lifecycle depends on whole, and dependencies for weaker temporary links.",
+      "details": "Slides present association details and multiplicity examples (Student-Schedule, Schedule-CourseOffering, CourseOffering primary/alternate multiplicities) and explain using composition when lifecycle is tied to container.",
+      "category": "Associations",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 580, "endLine": 620 }
     },
     {
       "question": "What does multiplicity in UML associations mean and what are common notations?",
-      "answer": "Multiplicity specifies how many instances of one class relate to instances of another. Common: 1 (exactly one), 0..1 (zero or one), * (zero or more), 1..* (one or more), n..m (range).",
-      "details": "Example: Customer 1 -------- * Order means one customer can have many orders, each order belongs to exactly one customer. Multiplicity affects database design (which table gets the foreign key) and code (collections vs single references).",
-      "category": "Associations"
+      "answer": "Multiplicity defines how many instances of one class relate to another. Examples: 1, 0..1, *, 1..*, and ranges like n..m. Multiplicity influences foreign keys and collections.",
+      "details": "Slides show multiplicity examples (Student-Schedule, CourseOffering primary/alternate) and explain multiplicity is included during modeling and affects implementation decisions.",
+      "category": "Associations",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 514, "endLine": 620 }
     },
     {
-      "question": "What is Generalization/Specialization (inheritance) in UML and when should you use it?",
-      "answer": "Generalization: Extracting common attributes/behaviors into a superclass. Specialization: Creating subclasses with additional/modified features. Use when: 'is-a' relationship exists, subclass has ALL superclass features plus more.",
-      "details": "Shown with hollow triangle arrow pointing to superclass. Liskov Substitution Principle: Subclass instances must be substitutable for superclass instances. Avoid deep hierarchies. Prefer composition over inheritance when relationship isn't truly 'is-a'.",
-      "category": "Generalization"
+      "question": "What is Model Unification and why is it important?",
+      "answer": "When multiple use cases produce different analysis models, unify them by merging common classes and relationships to create a single, coherent class diagram.",
+      "details": "Slides describe the unification process (create analysis models for each use case, find common classes, and merge them) and cite benefits including single consistent view, reuse, and reduced duplication.",
+      "category": "Modeling",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 616, "endLine": 668 }
     },
     {
-      "question": "What is an Association Class and when do you need one?",
-      "answer": "An Association Class captures attributes/behaviors that belong to the relationship itself, not to either participating class. Use when: The association has its own data that doesn't belong to either class.",
-      "details": "Example: Student-Course relationship has 'grade' - grade doesn't belong to student alone or course alone, but to the enrollment relationship. Association class becomes a junction table in database with its own attributes.",
-      "category": "Associations"
+      "question": "What association details should you capture in class diagrams?",
+      "answer": "Capture the relationship name, multiplicity, navigation (direction), and any attributes/roles associated with the relationship; these drive design and implementation decisions.",
+      "details": "Slides include an Association Details table for the Course Registration example and demonstrate how to record multiplicities (0..1, 0..*, 0..4) and navigation indicators.",
+      "category": "Associations",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 580, "endLine": 620 }
     },
     {
       "question": "What is the difference between attributes and associations in class diagrams?",
-      "answer": "Attributes: Primitive/simple data types (string, int, date) shown inside class box. Associations: Relationships to other domain objects, shown as lines between classes.",
-      "details": "Rule of thumb: If it's a complex concept with its own attributes, make it a class and use association. If it's a simple data value, make it an attribute. Example: 'address' as string = attribute. Address with street, city, zip = separate class with association.",
-      "category": "Domain Modeling"
+      "answer": "Attributes are simple data values (string, int) located inside a class; associations represent relationships to other domain objects and are shown as lines between classes.",
+      "details": "Slides recommend making a concept an attribute if it's primitive/simple; make it a class with an association if it has its own attributes or behavior. Examples and attribute lists in the CourseOffering entity illustrate this.",
+      "category": "Domain Modeling",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 536, "endLine": 568 }
     },
     {
       "question": "What is a System Sequence Diagram (SSD) and what does it show?",
-      "answer": "SSD shows the sequence of events/messages between external actors and the system as a black box. Shows WHAT interactions occur, not HOW the system processes them internally.",
-      "details": "Components: Actor (stick figure), System (rectangle), Messages (arrows with operation names), Return values (dashed arrows). Created from use case scenarios. One SSD per use case scenario typically. Focus on system operations that will need to be designed.",
-      "category": "Sequence Diagrams"
+      "answer": "An SSD shows the sequence of messages between external actors and the system (viewing the system as a black box) and highlights the operations invoked by use case interactions.",
+      "details": "Slides present sequence diagrams as time-oriented views that show objects, messages, lifelines, execution occurrences and message numbering and provide a clear, per-use-case view of interactions.",
+      "category": "Sequence Diagrams",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 307, "endLine": 324 }
     },
     {
       "question": "What are the key differences between Analysis and Design class diagrams?",
-      "answer": "Analysis: Conceptual classes from problem domain, no methods, shows 'what' exists. Design: Software classes, includes methods/visibility, shows 'how' to implement, includes design patterns.",
-      "details": "Analysis classes may merge or split in design. Design adds: Method signatures, visibility (+/-/#), return types, parameter types, design patterns, utility classes. Some analysis classes become attributes in design.",
-      "category": "OOA Fundamentals"
+      "answer": "Analysis diagrams model domain concepts (WHAT) with attributes and relationships; design diagrams add methods, visibility, implementation detail, and patterns (HOW).",
+      "details": "Slides note analysis is a problem-space view focusing on domain classes and interactions, while design is the solution-space view that includes operation signatures, visibility, and design patterns.",
+      "category": "OOA Fundamentals",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 632, "endLine": 668 }
     },
     {
       "question": "How do you determine if something should be an attribute vs. a separate class?",
-      "answer": "Make it a CLASS if: It has its own attributes, it has behavior, multiple objects reference it, it's queried independently. Make it an ATTRIBUTE if: It's a simple value, only one object owns it, no behavior needed.",
-      "details": "Example: Phone number - if just storing one number as string, attribute. If tracking multiple numbers with type (home, work), separate PhoneNumber class. Address - if complex with validation/formatting, separate class. If simple string, attribute.",
-      "category": "Domain Modeling"
+      "answer": "If it has its own attributes, behavior, or is referenced independently, model it as a class; if it’s a simple primitive value tied to one object, make it an attribute.",
+      "details": "Slides include examples and recommend deferring attributes during initial class identification and converting complex values into separate classes when needed for clarity and reuse.",
+      "category": "Domain Modeling",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 242, "endLine": 252 }
     },
     {
-      "question": "What role does the ubiquitous language play in domain modeling?",
-      "answer": "Ubiquitous language is shared vocabulary between developers and domain experts. Use domain terms consistently in: Requirements, code, diagrams, conversations. Reduces miscommunication and ensures model reflects real business concepts.",
-      "details": "From Domain-Driven Design (DDD). If domain experts say 'booking', don't call it 'reservation' in code. Class names, method names, variable names should use domain vocabulary. Glossary of terms helps maintain consistency.",
-      "category": "Domain Modeling"
+      "question": "Why is domain vocabulary important in analysis?",
+      "answer": "Use consistent domain terms between developers and domain experts to reduce miscommunication and ensure models reflect real business concepts.",
+      "details": "Slides emphasize that use case and domain vocabulary should be used consistently in requirements, specifications, and diagrams to improve clarity and prevent 'nomenclature drift'.",
+      "category": "Domain Modeling",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 132, "endLine": 172 }
     },
     {
       "question": "What are boundary, control, and entity classes in analysis?",
-      "answer": "Entity: Domain objects with persistent data (Customer, Order). Boundary: Interface with external actors (UI screens, APIs). Control: Coordinate/orchestrate between entities and boundaries (use case controllers).",
-      "details": "BCE/ECB pattern helps separate concerns during analysis. Entities map to database tables. Boundaries handle input/output. Controllers implement use case logic. In design, these become more refined architectural components.",
-      "category": "Analysis Patterns"
+      "answer": "Boundary classes represent interfaces to actors, control classes orchestrate use case logic, and entity classes model enduring domain objects and their data/behavior.",
+      "details": "Slides define <boundary>, <control>, and <entity> stereotypes, recommend one control class per use case, boundary classes per actor/use case, and entity classes for key domain abstractions.",
+      "category": "Analysis Patterns",
+      "slide_ref": { "file": "wk_5-1_ooa.md", "startLine": 182, "endLine": 268 }
     }
   ]
 }

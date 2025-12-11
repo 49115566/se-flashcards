@@ -8,73 +8,85 @@
       "question": "What is a software process?",
       "answer": "A structured set of activities essential for efficient and quality software development.",
       "details": "Guides teams through: Specification (defining what the system should do), Design & Implementation (defining organization and implementing), Testing (checking it does what customer wants), and Maintenance (changing system in response to changing needs). Defined processes help manage complexity, reduce risks, improve predictability, and enhance communication.",
-      "category": "Process Fundamentals"
+      "category": "Process Fundamentals",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 24, "endLine": 34 }
     },
     {
       "question": "When should you choose the Waterfall model for a project?",
       "answer": "Choose Waterfall when requirements are well-defined, stable, and unlikely to change; for projects in regulated environments; or when structured documentation and progress tracking are critical.",
       "details": "Waterfall follows a linear sequence of phases from requirements to maintenance without overlap. Offers simplicity, easy documentation, and structured progress tracking. However, it's inflexible and delays testing. Best for projects with minimal changes or those requiring extensive documentation for compliance.",
-      "category": "Process Selection"
+      "category": "Process Selection",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 41, "endLine": 54 }
     },
     {
       "question": "What are the main characteristics that differentiate the Spiral model from other process models?",
       "answer": "The Spiral model uniquely combines iterative development cycles with systematic risk analysis to manage project uncertainty.",
       "details": "Each cycle includes four phases: Planning, Risk Analysis, Engineering, and Evaluation. Pros: Risk handling, flexibility in requirements, iterative & incremental, improved communication. Cons: Requires expertise and is resource intensive, too much dependency on risk analysis, less fit for small projects. Ideal for large, complex, critical projects with high risk or uncertainty.",
-      "category": "Process Models"
+      "category": "Process Models",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 80, "endLine": 88 }
     },
     {
       "question": "A startup is building an e-commerce platform requiring frequent updates, user feedback integration, and rapid feature deployment. Which process model is most appropriate?",
       "answer": "Agile with Scrum is most appropriate because it enables continuous delivery and adaptability to changing user needs through iterative sprints.",
       "details": "Scrum's iterative sprints enable continuous delivery. Product owner and Scrum master roles promote clear communication and accountability. Daily stand-ups and sprint reviews ensure transparency and effective progress monitoring. Agile prioritizes flexibility, collaboration, customer feedback, and responsiveness to change.",
-      "category": "Process Selection"
+      "category": "Process Selection",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 215, "endLine": 227 }
     },
     {
       "question": "What factors should you consider when selecting a software process model?",
       "answer": "Consider: 1) Project characteristics (size, complexity, risk level), 2) Team experience, 3) Organizational culture, and 4) Model suitability for requirements stability.",
       "details": "Traditional models suit small, low-risk projects with stable requirements. Agile fits dynamic projects with evolving requirements. Experienced teams can manage complex models like Spiral or Agile. Culture openness and collaboration foster Agile/DevOps adoption.",
-      "category": "Process Selection"
+      "category": "Process Selection",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 134, "endLine": 152 }
     },
     {
       "question": "When and why would you use a hybrid process model?",
       "answer": "Use hybrid models when no single model addresses all project needs, such as combining Waterfall's structured planning phase with Agile's iterative development.",
       "details": "Example: Online learning platform development - Waterfall Phase for initial planning, requirements gathering, and system architecture design; Agile Phase for iterative development of modules. Why combine? Waterfall ensures thorough documentation and stakeholder alignment early; Agile allows flexibility for user-facing features. Requires clear communication and coordination to prevent inefficiencies.",
-      "category": "Process Selection"
+      "category": "Process Selection",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 164, "endLine": 186 }
     },
     {
       "question": "What is Extreme Programming (XP) and what are its key practices?",
       "answer": "XP is an Agile methodology that promotes pair programming and test-driven development to improve code quality and team collaboration.",
       "details": "Key practices include: Pair programming (two programmers working together), Test-driven development (write tests before code), Continuous integration, Short release cycles, Customer involvement, Simple design, and Refactoring. XP emphasizes technical excellence and rapid feedback.",
-      "category": "Agile Practices"
+      "category": "Agile Practices",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 100, "endLine": 103 }
     },
     {
       "question": "What is the Incremental model and what are its advantages and disadvantages?",
       "answer": "The Incremental model develops software in small increments, each adding specific functionality and undergoing testing.",
       "details": "Pros: Partial systems delivered early for user feedback, enables iterative improvements; Issues isolated within individual increments simplifying testing; Balances structured planning with flexibility for evolving requirements. Cons: Requires skilled team and proper planning; Incomplete requirement gathering can cause design issues; Lack of smooth flow between increments.",
-      "category": "Process Models"
+      "category": "Process Models",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 60, "endLine": 76 }
     },
     {
       "question": "You're developing SmartHealth, a mobile app integrating with wearables, supporting frequent updates based on user feedback, and requiring HIPAA compliance. What process model approach would you recommend?",
       "answer": "A hybrid approach combining Agile for iterative feature development with planned phases for compliance documentation and risk management.",
       "details": "Use structured planning phases (like Waterfall) for: HIPAA compliance requirements, system architecture for wearable integration, security requirements documentation. Use Agile/Scrum for: User-facing features, rapid iteration based on feedback, continuous deployment of updates. This addresses regulatory compliance while maintaining flexibility for evolving medical guidelines and user needs.",
-      "category": "Process Selection"
+      "category": "Process Selection",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 186, "endLine": 202 }
     },
     {
       "question": "What distinguishes software engineering from programming?",
       "answer": "Software engineering applies systematic methods, tools, and processes for professional development of high-quality software at scale, while programming focuses on writing code.",
       "details": "Software engineering concerns: Large-scale systems, large teams, non-functional attributes (reusability, flexibility, extensibility, portability, interoperability, scalability), cost-effective development. Programming is just one part. SE turns development into an engineering process - from ad hoc, to craft shop, to software assembly line.",
-      "category": "Process Fundamentals"
+      "category": "Process Fundamentals",
+      "slide_ref": { "file": "wk_1-1_overview.md", "startLine": 90, "endLine": 100 }
     },
     {
       "question": "What is CI/CD and how does it relate to software processes?",
       "answer": "CI/CD (Continuous Integration/Continuous Delivery) integrates development and operations to automate building, testing, and deployment, enabling rapid and reliable software delivery.",
       "details": "Continuous Integration (CI): Automates building and testing code changes to ensure code quality early. Continuous Delivery (CD): Ensures validated changes are swiftly and reliably deployed to production. DevOps integrates development and operations to improve collaboration and efficiency. CI/CD supports Agile principles by enabling frequent releases and quick feedback loops.",
-      "category": "DevOps Integration"
+      "category": "DevOps Integration",
+      "slide_ref": { "file": "wk_1-2_process.md", "startLine": 132, "endLine": 140 }
     },
     {
       "question": "Why does software maintenance often cost more than initial development?",
       "answer": "For systems with long life, maintenance costs may be several times development costs because software must continuously adapt to changing customer needs, fix emerging bugs, and evolve with technology.",
       "details": "Software engineering addresses this through: Best practices (design patterns), Extensibility (anticipating unclear/changing requirements), Modular design for easier changes. This is why SE emphasizes maintainability as a key quality attribute from the start.",
-      "category": "Process Fundamentals"
+      "category": "Process Fundamentals",
+      "slide_ref": { "file": "wk_1-1_overview.md", "startLine": 80, "endLine": 88 }
     }
   ]
 }

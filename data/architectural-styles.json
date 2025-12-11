@@ -13,7 +13,7 @@
     {
       "question": "What is Layered Architecture and what are its benefits/drawbacks?",
       "answer": "Layered: System organized in horizontal layers, each providing services to layer above. Common: Presentation → Business Logic → Data Access → Database. Benefits: Separation of concerns, testability. Drawbacks: Performance overhead, rigid structure.",
-      "details": "Rules: Layer can only call layer directly below (strict) or any lower layer (relaxed). Changes isolated to layer. Good for: Business applications, team specialization. Variations: Clean Architecture, Hexagonal Architecture add more structure around dependencies.",
+      "details": "Slides: Multi-level client-server; each layer exposes APIs to the higher layer; common 3-tier web applications follow this model. Benefits: separation of concerns, team parallelism. Drawbacks: performance overhead and straddling issues for cross-cutting requests.",
       "category": "Layered"
     },
     {
@@ -42,8 +42,8 @@
     },
     {
       "question": "What is Event-Driven Architecture (EDA)?",
-      "answer": "EDA: Components communicate through events - asynchronous messages about things that happened. Producer publishes events, consumers react. Benefits: Loose coupling, scalability, responsiveness.",
-      "details": "Patterns: Event notification (just signal), Event-carried state transfer (include data), Event sourcing (events as source of truth), CQRS (separate read/write models). Technologies: Message queues (RabbitMQ), Event streaming (Kafka). Challenges: Event ordering, debugging, eventual consistency.",
+      "answer": "EDA: Components communicate through events — asynchronous messages indicating that something has happened. Producers publish events; consumers react. Benefits include loose coupling, scalability, and responsiveness.",
+      "details": "Slides: Event-based systems commonly use message brokers, event buses, and pub/sub systems (RabbitMQ, Kafka). Debugging and ordering are common challenges; systems often adopt eventual consistency patterns.",
       "category": "Event-Driven"
     },
     {
@@ -59,28 +59,28 @@
       "category": "SOA"
     },
     {
-      "question": "What is Hexagonal Architecture (Ports and Adapters)?",
-      "answer": "Hexagonal: Core business logic in center, surrounded by ports (interfaces) and adapters (implementations). Dependencies point inward. Isolates domain from infrastructure concerns.",
-      "details": "Ports: Define interfaces for interactions (input ports for use cases, output ports for external systems). Adapters: Implement ports for specific technologies (REST adapter, DB adapter). Benefits: Testable domain logic, swappable infrastructure. Related: Clean Architecture, Onion Architecture.",
-      "category": "Hexagonal"
+      "question": "What is Cloud/Fog/Edge computing and when should you use it?",
+      "answer": "Cloud: on-demand virtualized resources managed by providers. Fog: middle layer bringing cloud capabilities closer to the edge. Edge: computation near devices for low latency and reduced bandwidth usage. Use when you need low latency, local processing, or bandwidth reduction for IoT and real-time systems.",
+      "details": "Slides explain Cloud/Fog/Edge: Cloud provides central processing and storage, Fog provides specialized middle-layer services, Edge processes data near devices. Benefits: lower latency, reduced bandwidth, improved reliability, and privacy benefits for local processing.",
+      "category": "Cloud/Edge"
     },
     {
-      "question": "What is the Repository Pattern and where does it fit architecturally?",
-      "answer": "Repository: Mediates between domain and data mapping layers. Provides collection-like interface for domain objects, hiding database details. Domain logic uses Repository interface, not database directly.",
-      "details": "Benefits: Domain stays pure, easier testing (mock repository), database swappable. Repository methods: Add, Remove, Find, FindById, FindByCriteria. Often combined with Unit of Work pattern for transaction management. Part of data access layer.",
-      "category": "Patterns"
+      "question": "What is Broker Architecture and how does it support service discovery?",
+      "answer": "Broker Mediates service invocation: servers register capabilities with the broker; clients query the broker to discover and invoke services. Brokers route requests, enabling dynamic service location, load balancing, and decoupling clients from server addresses.",
+      "details": "Slides show Broker: clients query broker for service locations; brokers may route requests or return addresses for direct invocation. Examples: CORBA object brokers, microservices service registries, API gateways. Advantages: decoupling and flexible routing. Disadvantages: broker bottlenecks and added complexity.",
+      "category": "Broker"
     },
     {
-      "question": "What is the Strangler Fig Pattern and when do you use it?",
-      "answer": "Strangler: Gradually replace legacy system by incrementally building new system alongside, routing traffic to new components as ready. Eventually 'strangles' old system.",
-      "details": "Use when: Migrating from monolith to microservices, replacing legacy systems. Steps: 1) Identify functional slice, 2) Build new component, 3) Route traffic to new component, 4) Repeat until legacy retired. Reduces risk vs big-bang rewrite. Requires facade/proxy to route requests.",
-      "category": "Migration Patterns"
+      "question": "What is Peer-to-Peer architecture and why choose it?",
+      "answer": "Peer-to-Peer: Decentralized network with independent peer nodes that can act as clients and servers. Offers resilience (no single point of failure) and scalable resources as peers join. Use for distributed storage, file sharing, and decentralized applications.",
+      "details": "Slides explain P2P characteristics: peers have own state, dynamic roles, and distributed registries for discovery. Advantages: high robustness and scalability. Disadvantages: complex coordination, security challenges, and unpredictable availability.",
+      "category": "P2P"
     },
     {
-      "question": "What is CQRS (Command Query Responsibility Segregation)?",
-      "answer": "CQRS: Separate read model from write model. Commands (writes) go to one model, Queries (reads) go to another, potentially different database. Benefits: Optimize reads/writes independently, scalability.",
-      "details": "Often paired with Event Sourcing. Write model handles commands, generates events. Read model(s) built from events, optimized for query patterns. Complexity tradeoff: Two models to maintain, eventual consistency. Use when read/write patterns differ significantly.",
-      "category": "CQRS"
+      "question": "What is Blackboard architecture and where is it applicable?",
+      "answer": "Blackboard architecture uses a shared central data structure (the blackboard) where specialists read/write partial results to iteratively solve a problem. It suits complex AI tasks like speech recognition, vision, or diagnosis where multiple techniques collaborate.",
+      "details": "Slides describe a central blackboard that stores problem state and partial solutions. Specialists watch the blackboard and contribute their computations. Advantages: loose coupling and flexible problem solving; disadvantages: coordination complexity and non-deterministic performance.",
+      "category": "Blackboard"
     },
     {
       "question": "How do you compare architectural styles for a given problem?",

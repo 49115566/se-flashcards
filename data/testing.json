@@ -9,90 +9,118 @@
       "answer": "Testing: Executing software to find defects and verify it meets requirements. Goals: Find bugs, verify functionality, validate requirements met, build confidence in quality, prevent defects from reaching production.",
       "details": "Testing cannot prove absence of bugs - only presence. Testing is risk-based: Can't test everything, prioritize based on risk. Testing goals also include: Provide information for decisions, meet compliance requirements, reduce cost of defects.",
       "category": "Fundamentals"
+      ,
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 55, "endLine": 171 }
     },
     {
       "question": "What are the different levels of testing?",
       "answer": "Unit: Individual components in isolation. Integration: Interactions between components. System: Complete integrated system. Acceptance: Validates against user requirements. Each level has different scope and purpose.",
       "details": "Unit: Developers test individual classes/functions. Integration: Test module interactions, interfaces. System: Test complete system behavior, end-to-end. Acceptance: Customer validates system meets needs. Also: Regression (verify changes don't break existing), Smoke (quick sanity check).",
       "category": "Test Levels"
+      ,
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 197, "endLine": 205 }
     },
     {
       "question": "What is the difference between Verification and Validation?",
       "answer": "Verification: 'Are we building the product right?' - Checks against specifications. Validation: 'Are we building the right product?' - Checks against user needs. V&V together ensure quality.",
       "details": "Verification activities: Reviews, inspections, unit tests, static analysis - check conformance to specs. Validation activities: Acceptance testing, user testing, prototypes - check product meets actual needs. Both needed: Can build exactly to spec but wrong product.",
       "category": "Fundamentals"
+      ,
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 67, "endLine": 74 }
     },
     {
       "question": "What is Black-Box vs White-Box testing?",
       "answer": "Black-Box: Test based on requirements/specifications without knowledge of internal structure. White-Box: Test based on internal code structure, paths, logic. Both approaches are complementary.",
-      "details": "Black-Box techniques: Equivalence partitioning, boundary value analysis, decision tables. White-Box techniques: Statement coverage, branch coverage, path coverage. Black-Box: What it should do. White-Box: How it does it. Gray-Box: Some internal knowledge.",
+  "details": "Information sources: requirements, use cases, user stories, and API/interface specs. Black-box tests exercise the external interface and compare results to an oracle; white-box tests analyze code paths and structure to exercise targeted internal behaviors. Both approaches are complementary.",
       "category": "Test Techniques"
+      ,
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 540, "endLine": 600 }
     },
     {
-      "question": "What is Equivalence Partitioning?",
-      "answer": "Equivalence Partitioning: Divide input domain into classes where all values in class should be treated same by software. Test one value from each partition - if one works, all in partition should work.",
-      "details": "Example: Age field (0-17, 18-64, 65+, negative, non-numeric). Reduces test cases: Instead of testing every value, test one per partition. Include valid AND invalid partitions. Assumption: Program treats all values in partition equivalently.",
-      "category": "Black-Box Techniques"
+      "question": "What are the components of a test case?",
+      "answer": "Test case components: Fixture (driver/stubs), Inputs, Oracle (expected behavior), and Assessment (compare actual vs expected).",
+      "details": "Fixtures provide environment and drivers; oracles define expected behavior; assessment checks actual vs expected. Not all test cases require an oracle (e.g., termination checks using white-box reasoning).",
+      "category": "Test Design",
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 366, "endLine": 396 }
     },
     {
-      "question": "What is Boundary Value Analysis?",
-      "answer": "Boundary Value Analysis: Test values at edges of equivalence partitions. Bugs often occur at boundaries. Test: Minimum, minimum-1, minimum+1, maximum-1, maximum, maximum+1.",
-      "details": "Example: If valid range is 1-100, test: 0, 1, 2, 99, 100, 101. Extends equivalence partitioning by focusing on edges. Off-by-one errors are common. For each boundary: Values on both sides. Works well with numeric ranges, string lengths, array indices.",
-      "category": "Black-Box Techniques"
+      "question": "What is the four-phase test case structure used in unit tests?",
+      "answer": "Four-phase pattern: Setup (Fixture), Exercise (invoke code), Verify (assert expectations), Teardown (clean-up).",
+      "details": "Setup prepares the environment and fixtures; Exercise runs the behavior; Verify asserts the expected results; Teardown resets/cleans resources. This pattern yields deterministic, isolated unit tests with fast feedback.",
+      "category": "Unit Test Practices",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 84, "endLine": 92 }
     },
     {
       "question": "What is Statement Coverage vs Branch Coverage?",
       "answer": "Statement Coverage: Percentage of executable statements executed by tests. Branch Coverage: Percentage of decision outcomes (true/false branches) executed. Branch coverage subsumes statement coverage.",
-      "details": "Example: if (x > 0) y = 1; Statement coverage needs one test (x=1). Branch coverage needs two (x=1 for true, x=0 for false). 100% statement coverage doesn't mean 100% branch coverage. MC/DC (Modified Condition/Decision Coverage) even stricter - used in safety-critical systems.",
+  "details": "Example: if (x > 0) y = 1; Statement coverage needs one test (x=1). Branch coverage needs two (x=1 for true, x=0 for false). 100% statement coverage doesn't mean 100% branch coverage. Slides show path coverage examples that illustrate how different inputs can exercise distinct paths.",
       "category": "White-Box Techniques"
+      ,
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 638, "endLine": 700 }
     },
     {
       "question": "What is Regression Testing and why is it important?",
       "answer": "Regression Testing: Re-running existing tests after changes to ensure no new defects introduced. Essential for: Code changes, bug fixes, refactoring, new features. Prevents 'fixed one bug, introduced two more.'",
       "details": "Challenges: Test suite grows, execution time increases. Strategies: Prioritize critical tests, run subset based on changes, parallelize execution. Automation essential for regression testing. CI/CD runs regression tests on every commit.",
       "category": "Test Types"
+      ,
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 270, "endLine": 286 }
     },
     {
       "question": "What is the Testing Pyramid?",
       "answer": "Testing Pyramid: More unit tests (base), fewer integration tests (middle), fewest E2E tests (top). Unit tests are fast, cheap, isolated. E2E tests are slow, expensive, realistic. Balance based on risk.",
       "details": "Anti-pattern: Ice cream cone (mostly manual/E2E, few unit tests). Pyramid rationale: Unit tests fast feedback, cheap to write/maintain. Integration tests verify interactions. E2E tests realistic but slow, brittle. Aim for most coverage at unit level.",
       "category": "Test Strategy"
+      ,
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 197, "endLine": 205 }
     },
     {
       "question": "What is Test-Driven Development (TDD)?",
       "answer": "TDD: Write failing test first, then write minimal code to pass, then refactor. Red-Green-Refactor cycle. Tests drive design and verify correctness continuously.",
       "details": "Benefits: Tests always exist, design for testability, documentation through tests, confident refactoring, reduced debugging. Challenges: Learning curve, discipline required, not suited for all situations. TDD produces: More modular code, better test coverage, cleaner interfaces.",
       "category": "TDD"
+      ,
+      "slide_ref": { "file": "slides/wk_2-2_best_practices.md", "startLine": 97, "endLine": 105 }
     },
     {
       "question": "What is a Test Double and what types exist?",
       "answer": "Test Double: Object substituted for real dependency during testing. Types: Dummy (passed but not used), Stub (provides canned answers), Spy (records calls), Mock (verifies interactions), Fake (working simplified implementation).",
-      "details": "Stub: Returns predetermined values. Mock: Verifies expected calls were made. Fake: Working but simplified (in-memory database). Use doubles to: Isolate unit under test, control dependency behavior, speed up tests, test error conditions.",
+  "details": "Slides describe test doubles primarily as mocks and stubs. Stubs (and fixtures) provide canned responses or environment access; Mocks replace external dependencies and can be used to verify interactions. Use doubles to isolate units, control dependency behavior, and speed up tests.",
       "category": "Test Doubles"
+      ,
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 713, "endLine": 724 }
     },
     {
       "question": "What is the difference between a Stub and a Mock?",
       "answer": "Stub: Provides canned responses to calls, state-based verification (check result). Mock: Verifies correct interactions occurred, behavior-based verification (check calls made). Stubs are simpler, Mocks verify collaboration.",
       "details": "Example: Testing email service. Stub: Always returns 'sent successfully', verify your code handles success. Mock: Verify sendEmail() was called with correct recipient/subject. Mocks can make tests brittle if they verify too much. Prefer stubs when possible.",
       "category": "Test Doubles"
+      ,
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 172, "endLine": 182 }
     },
     {
       "question": "What makes tests good or bad?",
       "answer": "Good tests: Fast, Isolated, Repeatable, Self-validating, Timely (FIRST). Also: Focused (test one thing), Readable, Maintainable. Bad tests: Slow, flaky, coupled, hard to understand.",
       "details": "Test smells: Testing multiple things, excessive setup, testing implementation details, brittle to refactoring, slow execution. Test should read like specification. Arrange-Act-Assert pattern. One assert per test (or related asserts). Test names describe scenario and expectation.",
       "category": "Test Quality"
+      ,
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 221, "endLine": 252 }
     },
     {
       "question": "What is Acceptance Testing and who performs it?",
       "answer": "Acceptance Testing: Validates system meets business requirements and user needs. Performed by: Customers, users, or testers on behalf of users. Types: User Acceptance Testing (UAT), Business Acceptance Testing, Alpha/Beta testing.",
       "details": "UAT: Final validation before production. Alpha: Internal testing before release. Beta: External users test before general release. Acceptance criteria should be defined in requirements/user stories. Often uses real-world scenarios. Gating for deployment decisions.",
       "category": "Test Types"
+      ,
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 256, "endLine": 266 }
     },
     {
       "question": "What is the cost of defects at different stages?",
       "answer": "Cost increases exponentially as defects found later: Requirements (1x) → Design (5x) → Coding (10x) → Testing (20x) → Production (100x+). Shift-left: Find defects earlier to reduce cost.",
       "details": "Prevention cheaper than detection: Reviews, static analysis, TDD. Early testing: Unit tests catch bugs immediately. Later stages: More code affected, harder to diagnose, customer impact. Production bugs: Include support, reputation damage, emergency fixes. Investment in early quality pays off.",
       "category": "Economics"
+      ,
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 232, "endLine": 238 }
     }
   ]
 }

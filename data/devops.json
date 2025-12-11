@@ -6,93 +6,94 @@
   "cards": [
     {
       "question": "What is DevOps and what problem does it solve?",
-      "answer": "DevOps: Culture/practices unifying Development and Operations. Solves: Silos between dev (ship features fast) and ops (stability), slow releases, manual deployments, blame culture. Goal: Faster, reliable, continuous delivery.",
-      "details": "Key principles: Automation, collaboration, continuous improvement, fast feedback, shared responsibility. DevOps is culture first, tools second. Metrics: Deployment frequency, lead time, MTTR (Mean Time To Recovery), change failure rate.",
-      "category": "Fundamentals"
+      "answer": "DevOps: Culture/practices unifying Development and Operations. Solves: Silos between dev and ops, slow releases, manual deployments, and lack of reproducibility. Goal: get changes to users quickly, reliably, and securely.",
+      "details": "Key principles: Automation, collaboration, continuous improvement, fast feedback, shared responsibility. DevOps is culture first, tools second. Slides summary: getting changes to users quickly, reliably, and securely.",
+      "category": "Fundamentals",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 6, "endLine": 8 }
     },
     {
       "question": "What is Continuous Integration (CI)?",
-      "answer": "CI: Practice of frequently merging code changes into shared repository, with automated build and test on each merge. Catches integration issues early. Goal: Always have working, tested code.",
-      "details": "CI practices: Commit frequently (daily+), automated builds triggered on commit, comprehensive automated tests, fast builds (< 10 minutes ideal), fix broken builds immediately. Benefits: Early bug detection, reduced integration risk, always deployable state.",
-      "category": "CI/CD"
+      "answer": "CI: Practice of continuously integrating and building code as developers work, with automated builds and tests to gain confidence in frequent changes.",
+      "details": "Slides: CI is part of the Build phase—developers create code, the code is compiled and tested in development environments as an artifact for shipping. CI enables early testing and fixes.",
+      "category": "CI/CD",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 158, "endLine": 166 }
     },
     {
-      "question": "What is Continuous Delivery vs Continuous Deployment?",
-      "answer": "Continuous Delivery: Every change is automatically tested and ready for production release - humans decide when to deploy. Continuous Deployment: Every change that passes tests is automatically deployed to production - no human intervention.",
-      "details": "Delivery: Deploy button is always ready. Deployment: No deploy button - fully automated. Deployment is more aggressive, requires high confidence in testing. Most organizations do Delivery. Prerequisites: Strong testing, monitoring, rollback capability.",
-      "category": "CI/CD"
+      "question": "What is Continuous Integration and Delivery (CI/CD)?",
+      "answer": "CI/CD is the practice that includes continuous integration (frequent builds & tests) and continuous delivery of validated artifacts so they're ready to be shipped to production.",
+      "details": "Slides emphasize CI/CD as a key DevOps characteristic and part of Build-Ship-Run: Build and test artifacts then prepare them for shipping and running in production.",
+      "category": "CI/CD",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 158, "endLine": 284 }
     },
     {
-      "question": "What is a CI/CD Pipeline and what are typical stages?",
-      "answer": "Pipeline: Automated sequence of stages code goes through from commit to production. Typical stages: Build → Unit Test → Integration Test → Deploy to Staging → Acceptance Test → Deploy to Production.",
-      "details": "Each stage is a quality gate - failure stops the pipeline. Additional stages: Static analysis, security scanning, performance testing, manual approval. Pipeline as code: Define in file (Jenkinsfile, .gitlab-ci.yml). Parallelization for speed. Artifacts passed between stages.",
-      "category": "CI/CD"
+      "question": "What do build, ship, and run mean in the Build-Ship-Run (pipeline)?",
+      "answer": "Slides highlight Build (compile/test), Ship (create and store images/artifacts), and Run (deploy/manage/scale).",
+      "details": "The Build phase compiles and creates artifacts. The Ship phase creates Docker images and stores them in registries. The Run phase deploys containerized applications and scales/manages them. These are the stages the slides focus on.",
+      "category": "CI/CD",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 158, "endLine": 183 }
     },
     {
-      "question": "What are the key deployment strategies and when to use each?",
-      "answer": "Blue-Green: Two identical environments, switch traffic. Canary: Gradually route traffic to new version. Rolling: Update instances incrementally. Feature Flags: Deploy code, enable features separately.",
-      "details": "Blue-Green: Easy rollback, requires 2x resources. Canary: Lower risk, can detect issues early, complex routing. Rolling: Resource efficient, brief mixed versions. Feature Flags: Decouple deployment from release, can target users. Choose based on: Risk tolerance, resources, rollback needs.",
-      "category": "Deployment"
+      "question": "What is the Build-Ship-Run workflow?",
+      "answer": "Build-Ship-Run: DevOps workflow where code is Built into artifacts, Shipped as images/artifacts to registries, and Ran (deployed & managed) in target environments.",
+      "details": "Build: compile and create artifacts; Ship: create and store images (Docker registries); Run: deploy containerized applications, manage and scale services. It's the core flow from development to operations described in the slides.",
+      "category": "Workflow",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 158, "endLine": 183 }
     },
     {
-      "question": "What is Blue-Green Deployment?",
-      "answer": "Blue-Green: Two identical production environments (Blue=current, Green=new). Deploy to Green, test, then switch router to Green. Old Blue becomes standby for instant rollback.",
-      "details": "Process: 1) Blue serves traffic. 2) Deploy new version to Green. 3) Test Green. 4) Switch router to Green. 5) Green now live, Blue is standby. Benefits: Zero-downtime, instant rollback. Challenges: Database migrations, 2x infrastructure cost, session handling.",
-      "category": "Deployment"
-    },
-    {
-      "question": "What is Canary Deployment?",
-      "answer": "Canary: Deploy new version to small subset of users/servers first. Monitor for issues. Gradually increase traffic if healthy. Rollback if problems detected.",
-      "details": "Name from coal mine canaries. Process: Deploy to 1% → monitor → 10% → monitor → 50% → 100%. Metrics to watch: Error rates, latency, business metrics. Automated rollback on anomaly detection. Benefits: Limit blast radius of bugs. Requires: Good monitoring, traffic routing capability.",
-      "category": "Deployment"
-    },
-    {
-      "question": "What is Infrastructure as Code (IaC)?",
-      "answer": "IaC: Managing/provisioning infrastructure through code instead of manual processes. Infrastructure defined in files, version controlled, reproducible. Tools: Terraform, CloudFormation, Ansible, Pulumi.",
-      "details": "Benefits: Reproducibility, version control, code review, automation, documentation. Declarative: Define desired state (Terraform). Imperative: Define steps (Ansible). Immutable infrastructure: Replace servers rather than update. Pet vs Cattle: Treat servers as disposable.",
-      "category": "IaC"
+      "question": "What are some benefits of reproducible, automated deployments?",
+      "answer": "Reproducibility, automation, version control of artifacts, easier rollback and faster recovery, and consistent deployments across environments.",
+      "details": "Slides emphasize that Docker images contain everything needed to run, images are stored in registries, and reproducible images plus automated workflows enable faster and more reliable deployments.",
+      "category": "Automation",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 178, "endLine": 183 }
     },
     {
       "question": "What are Containers and why use them for deployment?",
       "answer": "Containers: Lightweight, isolated environments packaging application with dependencies. Docker is most common. Benefits: Consistent across environments ('works on my machine' solved), fast startup, resource efficient, portable.",
-      "details": "Container vs VM: Containers share OS kernel (lighter), VMs have full OS (more isolated). Dockerfile defines image. Image is template, Container is running instance. Registry stores images (Docker Hub). Orchestration (Kubernetes) manages containers at scale.",
-      "category": "Containers"
+      "details": "Container vs VM: Containers share OS kernel (lighter), VMs have full OS (heavier). Dockerfile defines an image; registries store images for distribution. Slides emphasize how containers enable portability, efficiency, and reproducible deployments.",
+      "category": "Containers",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 192, "endLine": 197 }
     },
     {
-      "question": "What is Kubernetes and what problems does it solve?",
-      "answer": "Kubernetes (K8s): Container orchestration platform. Solves: Running containers at scale, load balancing, self-healing, rolling updates, scaling, service discovery.",
-      "details": "Key concepts: Pod (smallest deployable unit), Service (stable network endpoint), Deployment (manages replicas), ConfigMap/Secret (configuration). Declarative: Define desired state, K8s maintains it. Self-healing: Restarts failed containers. Horizontal scaling: Adjust replicas based on load.",
-      "category": "Containers"
+      "question": "What is service orchestration and why is it needed?",
+      "answer": "Service orchestration coordinates and manages services at scale: deploying, managing, and scaling service instances and routing traffic between them.",
+      "details": "Slides mention a service orchestration layer as part of microservices and SOA. Orchestration enables deploying containerized applications, managing running services, and scaling services based on demand.",
+      "category": "Containers",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 87, "endLine": 106 }
     },
     {
-      "question": "What is Monitoring and Observability?",
-      "answer": "Monitoring: Collecting metrics about system health (CPU, memory, requests). Observability: Understanding system internal state from external outputs. Three pillars: Logs, Metrics, Traces.",
-      "details": "Logs: Event records (what happened). Metrics: Numeric measurements over time (how much). Traces: Request path through distributed system (how long, where). Tools: Prometheus, Grafana, ELK Stack, Jaeger. Alerting: Notify on anomalies. Dashboards: Visualize health.",
-      "category": "Operations"
+      "question": "Why is monitoring and operational feedback important?",
+      "answer": "Slides stress measurement and feedback to drive reliability—monitoring and operational practices help reduce Mean Time To Repair (MTTR) and maintain system stability.",
+      "details": "The slides present metrics and benefits (reduced MTTR) and explain that reproducible, automated deployments plus operational monitoring help maintain reliability. Details about specific tools are not covered in the slides.",
+      "category": "Operations",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 237, "endLine": 247 }
     },
     {
       "question": "What is the role of automated testing in DevOps?",
       "answer": "Automated testing enables CI/CD: Provides confidence for frequent releases, catches regressions quickly, enables fast feedback. Without automation, continuous delivery is impossible.",
       "details": "Test pyramid in CI: Many unit tests (fast), fewer integration tests, few E2E tests. Pipeline gates: Tests must pass to proceed. Test parallelization for speed. Flaky tests are DevOps enemy - fix immediately. Test data management critical. Contract testing for services.",
-      "category": "Testing"
+      "category": "Testing",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 8, "endLine": 288 }
     },
     {
-      "question": "What is GitOps?",
-      "answer": "GitOps: Operations through Git. Git repository is single source of truth for infrastructure and application state. Changes through pull requests, automated sync to environments.",
-      "details": "Process: Declare desired state in Git → automated sync to cluster → drift detection alerts differences. Benefits: Version controlled infrastructure, audit trail, rollback via revert, developer-friendly (Git workflow). Tools: ArgoCD, Flux. Complements IaC with operational workflow.",
-      "category": "Practices"
+      "question": "What are some key goals of DevOps?",
+      "answer": "Speed, Reliability, Security, and Efficiency.",
+      "details": "Speed: rapid deployments and fast feedback. Reliability: automated testing, reproducible deployments, rollback capabilities. Security: secure images, scanning, secrets management. Efficiency: resource optimization through containerization and reduced operational overhead.",
+      "category": "Culture",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 280, "endLine": 288 }
     },
     {
-      "question": "What is the relationship between DevOps and Agile?",
-      "answer": "Agile: Iterative development with customer collaboration. DevOps: Extends agile through deployment and operations. DevOps enables Agile's goal of frequent, valuable releases. Complementary practices.",
-      "details": "Agile focuses on development practices, DevOps on delivery pipeline. DevOps enables: 'Done' means in production (not just 'coded'). Feedback from production informs development. Shared responsibility throughout lifecycle. Both: Culture of collaboration, continuous improvement, fast feedback.",
-      "category": "Culture"
+      "question": "What cultural shift does DevOps emphasize?",
+      "answer": "DevOps emphasizes a cultural shift between development and operations teams toward shared responsibility, automation, and continuous improvement to enable faster, more reliable delivery.",
+      "details": "Slides list 'Cultural shift' between dev and operations as a primary DevOps effect—DevOps is culture-first and focuses on collaboration and shared responsibility.",
+      "category": "Culture",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 309, "endLine": 316 }
     },
     {
-      "question": "What are the key DevOps metrics (DORA metrics)?",
-      "answer": "DORA metrics: Deployment Frequency (how often deploy), Lead Time for Changes (commit to production), MTTR (mean time to recover from failure), Change Failure Rate (% of deployments causing incidents).",
-      "details": "Elite teams: Multiple deploys/day, < 1 hour lead time, < 1 hour MTTR, < 15% failure rate. These metrics correlate with organizational performance. Measure to improve. Balance speed with stability. Track trends over time.",
-      "category": "Metrics"
+      "question": "What are some benefits and indicators of DevOps?",
+      "answer": "Slides highlight increased release frequency (e.g., 13X more releases), portability across environments (41% move workloads across clouds), reduced MTTR (62% reported reduction), faster onboarding (65% reduction), and potential cost reductions.",
+      "details": "These data points show that DevOps and containerization can improve agility, portability, reliability, and efficiency. Slides use these indicators to demonstrate real-world benefits of Docker and DevOps practices.",
+      "category": "Metrics",
+      "slide_ref": { "file": "wk_12-1_devops.md", "startLine": 237, "endLine": 247 }
     }
   ]
 }

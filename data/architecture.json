@@ -23,9 +23,9 @@
       "category": "Architecture Views"
     },
     {
-      "question": "What are Architecture Decision Records (ADRs) and why use them?",
-      "answer": "ADRs document significant architectural decisions: context, decision, consequences. Why: Captures rationale for future reference, enables informed reversal, onboards new team members.",
-      "details": "ADR structure: Title, Status (proposed/accepted/deprecated), Context (problem), Decision (choice made), Consequences (tradeoffs). Store with code in version control. Examples: 'Use PostgreSQL for persistence', 'Adopt microservices architecture'.",
+      "question": "Why document architecture decisions and what core information should be captured?",
+      "answer": "Documenting decisions captures rationale and consequences, making it easier to explain choices and onboard team members. Core info: context/problem, decision, reasons, tradeoffs, and who approved it.",
+      "details": "Slides emphasize documenting architecture decisions and rationale to explain and persuade stakeholders. Store rationale with code in version control and include context, the chosen decision, consequences/tradeoffs, and status.",
       "category": "Documentation"
     },
     {
@@ -42,8 +42,8 @@
     },
     {
       "question": "What factors influence architectural decisions?",
-      "answer": "1) Functional requirements (what system does). 2) Quality attributes (how well). 3) Constraints (technology, budget, team skills). 4) Organizational factors (Conway's Law). 5) Business context (time to market, scalability needs).",
-      "details": "Conway's Law: System structure mirrors organization structure. Consider: Team size/distribution, existing systems to integrate, regulatory requirements, expected change areas, operational environment. No 'best' architecture - depends on context.",
+      "answer": "1) Functional requirements (what system does). 2) Quality attributes (how well). 3) Constraints (technology, budget, team skills). 4) Organizational factors (team structure). 5) Business context (time to market, scalability needs).",
+      "details": "Consider: Team size/distribution, existing systems to integrate, regulatory requirements, expected change areas, operational environment. No 'best' architecture - depends on context. Slides discuss the role of organizational and business constraints in architecture selection.",
       "category": "Decision Making"
     },
     {
@@ -51,17 +51,17 @@
       "answer": "Layers: Logical separation of concerns (presentation, business, data). Tiers: Physical separation/deployment (client, server, database). Layers can be deployed on same or different tiers.",
       "details": "3-Layer: Presentation, Business Logic, Data Access. 3-Tier: Client, Application Server, Database Server. Layers are about code organization. Tiers are about deployment topology. Web app might be 3-layer but 2-tier (client browser + server with all layers).",
       "category": "Architecture Concepts"
-    },
+  },
     {
       "question": "How do you evaluate an architecture?",
-      "answer": "Methods: Architecture Tradeoff Analysis Method (ATAM), Software Architecture Analysis Method (SAAM). Evaluate against: Quality attribute scenarios, stakeholder concerns, design principles.",
-      "details": "ATAM process: Present architecture, identify quality attribute goals, analyze scenarios, identify sensitivity/tradeoff points. Look for risks (decisions that may not achieve goals) and non-risks (sound decisions). Document findings and recommendations.",
+      "answer": "Evaluate an architecture by reviewing it against stakeholder goals and quality attribute scenarios, analyzing tradeoffs, and checking for risks and constraints.",
+      "details": "Slides highlight using quality attribute scenarios, stakeholder concerns, and tradeoff analysis to evaluate architecture. Identify risks where decisions may not meet goals; propose mitigations. Document evaluations and recommendations.",
       "category": "Evaluation"
     },
     {
-      "question": "What is architectural erosion and how do you prevent it?",
-      "answer": "Erosion: Gap between intended and actual architecture grows over time as developers make decisions that violate architectural rules. Prevention: Automated checks, code reviews, architectural fitness functions.",
-      "details": "Causes: Pressure to ship, lack of architecture knowledge, changing requirements. Fitness functions: Tests that check architectural rules (dependency constraints, layer violations). Tools: ArchUnit, Structure101, SonarQube. Regular architecture reviews help.",
+      "question": "What is architectural erosion (drift) and how do you manage it?",
+      "answer": "Architectural erosion (drift) occurs when the implementation diverges from intended architecture over time. Manage it with regular architecture reviews, code/design reviews, and by keeping documentation and interface contracts up to date.",
+      "details": "Causes: time-to-market pressure, unclear architecture, ad-hoc changes. Prevent by documenting architecture, reviewing changes for conformance, and refactoring when violations are found. Encourage shared design ownership and maintain interfaces.",
       "category": "Architecture Management"
     },
     {
@@ -72,14 +72,14 @@
     },
     {
       "question": "What is the role of interfaces in architecture?",
-      "answer": "Interfaces define contracts between components: what services are provided, expected inputs/outputs, quality guarantees. Enable: Loose coupling, substitutability, parallel development, testing.",
-      "details": "Interface types: API (programmatic), Protocol (communication), File format (data exchange). Good interfaces: Stable, well-documented, versioned, backward compatible. Interface changes are architectural decisions - affect all clients.",
+      "answer": "Interfaces define contracts between components: what services are provided, expected inputs/outputs, and quality guarantees. They enable loose coupling and substitutability.",
+      "details": "Slides discuss interfaces as contracts between components. Types include APIs (programmatic), protocols (network), and file formats (data exchange). Good interfaces are stable, documented, and versioned.",
       "category": "Architecture Concepts"
     },
     {
-      "question": "What is evolutionary architecture?",
-      "answer": "Evolutionary architecture supports incremental, guided change. Acknowledges requirements evolve - architecture must adapt without major rewrites. Key: Make decisions reversible when possible.",
-      "details": "Principles: Delay irreversible decisions, build for change, use fitness functions to protect important characteristics. Techniques: Microservices, feature toggles, branch by abstraction, strangler pattern. Opposite of Big Design Up Front (BDUF).",
+      "question": "What is evolutionary architecture and how can you design for change?",
+      "answer": "Evolutionary architecture enables incremental change and evolution of the system over time. Design for change by choosing reversible, modular architecture decisions, and by enabling regular refactoring and review.",
+      "details": "Slides recommend: delay irreversible decisions, prefer modular styles (microservices, layered), keep interfaces stable, and review architecture frequently to support continuous evolution versus big-bang redesigns.",
       "category": "Architecture Principles"
     },
     {
@@ -90,8 +90,8 @@
     },
     {
       "question": "What are cross-cutting concerns in architecture?",
-      "answer": "Cross-cutting concerns affect multiple components: logging, security, error handling, caching, transactions. Challenge: Can't be modularized into single component - spread across system.",
-      "details": "Handling approaches: Aspect-Oriented Programming (AOP), middleware/interceptors, frameworks with built-in support, shared libraries. Important to address at architecture level - ad-hoc handling leads to inconsistency. Document how each concern is addressed.",
+      "answer": "Cross-cutting concerns affect multiple components: logging, security, error handling, caching, transactions. Challenge: Can't be modularized into a single component - they span the system.",
+      "details": "Slides show cross-cutting concerns are resolved using shared libraries, frameworks, middleware, and design patterns where appropriate. Important to address them at the architecture level to avoid inconsistency and duplicated logic.",
       "category": "Architecture Concepts"
     }
   ]

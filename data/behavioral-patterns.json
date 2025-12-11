@@ -41,9 +41,15 @@
       "category": "Command"
     },
     {
-      "question": "How does Command Pattern enable undo/redo functionality?",
-      "answer": "Store executed commands in history. Each Command has execute() and unexecute(). Undo: Pop from history, call unexecute(). Redo: Re-execute stored command. Command stores state needed to undo.",
-      "details": "Memento pattern can help store pre-command state. Commands may store: Previous values, incremental changes, or use Memento. History can be stack (unlimited undo) or limited buffer. Composite Command enables macro undo.",
+      "question": "What is the Interpreter Pattern?",
+      "answer": "Interpreter: Define a representation for a grammar of a language and an interpreter that uses the representation to interpret sentences in the language.",
+      "details": "Slides cover Expression interface, TerminalExpression, OrExpression/AndExpression and the recursive traversal of grammar rules. Use cases: simple scripting languages, SQL-like parsing, rule engines.",
+      "category": "Interpreter"
+    },
+    {
+      "question": "What are the core components and use cases for the Command pattern?",
+      "answer": "Core components: Command (interface), ConcreteCommand (encapsulates request), Invoker (takes/queues commands), Receiver (executes the command), Client (creates commands). Use cases: job queues, macro recording, task scheduling, decoupling senders and receivers.",
+      "details": "Slides show Command encapsulates a request as an object, enabling queuing, scheduling, and decoupling. Restaurant order system and Broker demo are slide examples. Undo/redo can be implemented by storing command history and optionally leveraging Memento for state capture.",
       "category": "Command"
     },
     {
@@ -51,6 +57,12 @@
       "answer": "Template Method: Define skeleton of algorithm in base class, defer some steps to subclasses. Subclasses redefine certain steps without changing algorithm structure. Inheritance-based.",
       "details": "Structure: AbstractClass (defines template method + primitive operations), ConcreteClass (implements primitive operations). Template method calls primitive operations in order. Hooks: Optional steps subclasses may override. Example: Framework application lifecycle.",
       "category": "Template Method"
+    },
+    {
+      "question": "What is the Visitor Pattern?",
+      "answer": "Visitor: Encapsulate an operation to be performed on elements of an object structure, allowing adding new operations without modifying element classes.",
+      "details": "Slides show Visitor pattern components: element interface with accept(), concrete elements, visitor interface, and concrete visitor. Use cases include operations across a structure (e.g., compiling, traversing ASTs, reports). Example: ComputerPart with keyboard, mouse, etc.",
+      "category": "Visitor"
     },
     {
       "question": "What is the difference between Strategy and Template Method patterns?",

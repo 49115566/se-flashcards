@@ -8,91 +8,106 @@
       "question": "What is Unit Testing and what are its characteristics?",
       "answer": "Unit Testing: Testing smallest testable parts of application in isolation. Characteristics: Fast (milliseconds), Isolated (no external dependencies), Automated, Repeatable, Self-checking.",
       "details": "Unit = class, method, or small group of related methods. Tests should run independently, in any order. No database, network, file system in true unit tests. Benefits: Fast feedback, confidence in changes, documentation, design improvement.",
-      "category": "Fundamentals"
+      "category": "Fundamentals",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 26, "endLine": 38 }
     },
     {
       "question": "What is the Arrange-Act-Assert (AAA) pattern?",
       "answer": "AAA structures tests in three phases: Arrange (set up test data and dependencies), Act (execute the code under test), Assert (verify the expected outcome). Makes tests readable and consistent.",
       "details": "Also called Given-When-Then in BDD. Example: Arrange: Create calculator, set values. Act: Call add method. Assert: Verify result equals expected sum. Each phase clearly separated. Assertions at end only. Some frameworks use Setup method for common Arrange code.",
-      "category": "Test Structure"
+      "category": "Test Structure",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 84, "endLine": 92 }
     },
     {
       "question": "What is the difference between unit tests and integration tests?",
       "answer": "Unit tests: Single unit in isolation, fast, no real dependencies. Integration tests: Multiple units together, may use real dependencies (DB, network), slower. Both needed for comprehensive testing.",
       "details": "Unit tests use mocks/stubs for dependencies. Integration tests verify units work together correctly. Unit tests find bugs in logic. Integration tests find bugs in interactions, configuration, environment. Keep unit tests pure for speed and reliability.",
-      "category": "Fundamentals"
+      "category": "Fundamentals",
+      "slide_ref": { "file": "slides/wk_9-1_testing.md", "startLine": 197, "endLine": 205 }
     },
     {
       "question": "How should you name unit tests?",
       "answer": "Test names should describe: What is being tested, Under what conditions, Expected outcome. Pattern: MethodName_Scenario_ExpectedBehavior or Should_ExpectedBehavior_When_Condition.",
       "details": "Examples: 'calculateTotal_withEmptyCart_returnsZero', 'should_throwException_when_inputIsNull'. Names are documentation - someone should understand what's tested without reading code. Long names are OK - clarity over brevity. Avoid: test1, testCalculate.",
-      "category": "Best Practices"
+      "category": "Best Practices",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 280, "endLine": 286 }
     },
     {
-      "question": "What are the F.I.R.S.T. principles of unit testing?",
-      "answer": "Fast: Run quickly (milliseconds). Independent: No test depends on another. Repeatable: Same result every time. Self-validating: Pass/fail automatically. Timely: Written at the right time (ideally before code in TDD).",
-      "details": "Fast: Enables running often. Independent: Run in any order, isolation. Repeatable: No flakiness, no environmental dependencies. Self-validating: No manual inspection needed. Timely: Catches issues early, helps design. Violating these principles reduces test value.",
-      "category": "Best Practices"
+      "question": "What are core unit testing practices (simplicity, reliability, practicality)?",
+      "answer": "Core practices: Simplicity and understandability; Single-purpose tests; Determinism and independence; Maintainability; Practical concerns like speed and comprehensive coverage planning.",
+      "details": "Slides group practices into tiers: Fundamental (simplicity, understandability, essentiality, single purpose), Reliability (determinism, independence, failability, maintainability), Practicality (comprehensiveness, speed). Follow these to keep unit tests effective.",
+      "category": "Best Practices",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 221, "endLine": 252 }
     },
     {
       "question": "What is code coverage and what are its limitations?",
       "answer": "Code coverage: Percentage of code executed by tests. Types: Line/statement coverage, Branch coverage, Path coverage. Limitation: High coverage doesn't mean good tests - tests might execute code without meaningful assertions.",
-      "details": "100% coverage is not the goal - quality over quantity. Coverage shows what's NOT tested (gaps). Low coverage is a problem, high coverage doesn't guarantee quality. Mutation testing: Modify code, see if tests catch changes - better quality indicator.",
-      "category": "Metrics"
+      "details": "Slides: 100% coverage is not the goal; coverage is useful to find gaps but doesn't guarantee test quality. Focus on meaningful assertions and behaviors rather than just execution counts.",
+      "category": "Metrics",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 393, "endLine": 400 }
     },
     {
       "question": "What is mocking and when should you use it?",
       "answer": "Mocking: Replacing real dependencies with controlled test doubles. Use when: External dependencies (DB, API), Slow operations, Non-deterministic behavior (time, random), Difficult to trigger conditions (errors).",
       "details": "Mock frameworks: Mockito (Java), Jest (JS), unittest.mock (Python). Mock what you don't own (external APIs). Don't over-mock - tests become implementation-coupled. Prefer stubs over mocks when possible. Real objects OK if fast and deterministic.",
-      "category": "Mocking"
+      "category": "Mocking",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 713, "endLine": 724 }
     },
     {
       "question": "How do you test code that depends on time or randomness?",
       "answer": "Inject dependencies: Pass clock/random generator as parameter. Use interfaces: IClock, IRandomGenerator that can be mocked. Test doubles: Fixed time clock, seeded random generator. Never use system time/random directly in code under test.",
       "details": "Example: Instead of DateTime.Now, inject IDateTimeProvider. Tests provide FakeDateTimeProvider returning fixed time. Seeded random: Same seed = same sequence. Testing edge cases: End of month, leap year, timezone changes. Makes tests repeatable.",
-      "category": "Testability"
+      "category": "Testability",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 523, "endLine": 529 }
     },
     {
       "question": "What is the difference between testing state and testing behavior?",
       "answer": "State testing: Verify object's state after action (check values/results). Behavior testing: Verify correct interactions with dependencies (check calls made). State testing is simpler and more robust.",
       "details": "State: assertEquals(expected, calculator.result()). Behavior: verify(mockService).sendEmail(anyString()). Behavior tests can be brittle - coupled to implementation. Prefer state testing. Use behavior testing for: Side effects, calls to external systems, command methods without return value.",
-      "category": "Test Approaches"
+      "category": "Test Approaches",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 172, "endLine": 216 }
     },
     {
       "question": "What are parameterized tests and when to use them?",
-      "answer": "Parameterized tests: Run same test logic with different input data. Define test once, provide multiple input/expected output combinations. Reduces duplication, improves coverage.",
-      "details": "Example: Test add(a,b) with [(1,2,3), (0,0,0), (-1,1,0), (MAX,1,overflow)]. Frameworks: JUnit @ParameterizedTest, pytest @pytest.mark.parametrize. Use for: Mathematical functions, validators, converters. Each parameter set is separate test case.",
-      "category": "Test Techniques"
+      "answer": "Parameterized tests (slide examples use loops/iterations to exercise multiple inputs): Run the same test logic with multiple input cases to reduce duplication and improve coverage.",
+      "details": "Slides show looping/edge-case examples to exercise different inputs; frameworks support parameterized tests, but the core idea is one test template with many input sets.",
+      "category": "Test Techniques",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 637, "endLine": 646 }
     },
     {
       "question": "How do you test exception handling?",
       "answer": "Verify code throws expected exception for invalid inputs/error conditions. Test: Exception type, message content, when it's thrown. Frameworks provide assertions: assertThrows, @Test(expected=), pytest.raises.",
       "details": "Example: assertThrows(IllegalArgumentException.class, () -> service.process(null)). Test both that exception is thrown AND exception details. Also test that exceptions are NOT thrown for valid inputs. Test catch blocks handle exceptions correctly.",
-      "category": "Test Techniques"
+      "category": "Test Techniques",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 651, "endLine": 658 }
     },
     {
       "question": "What is test fixture and how do you manage test setup?",
       "answer": "Test fixture: Fixed state used as baseline for tests. Setup/teardown methods prepare and clean up fixture. @Before/@After (per test), @BeforeClass/@AfterClass (per class). Share setup code without coupling tests.",
       "details": "Setup: Create objects, initialize state, prepare mocks. Teardown: Clean up resources, reset state. Fresh fixture per test ensures isolation. Shared fixture between tests risks coupling. Use factory methods or builders for complex object creation.",
-      "category": "Test Organization"
+      "category": "Test Organization",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 44, "endLine": 56 }
     },
     {
       "question": "What are common unit testing anti-patterns?",
       "answer": "Anti-patterns: Testing implementation details, Excessive mocking, Slow tests, Flaky tests, Testing multiple things per test, Complex test setup, Ignoring test failures, No assertions.",
       "details": "Testing implementation: Test public API behavior, not private methods. Excessive mocking: Mock boundaries, not everything. Flaky tests: Non-deterministic, time-dependent, order-dependent. Fix immediately - flaky tests erode confidence. Each test should have clear purpose.",
-      "category": "Anti-Patterns"
+      "category": "Anti-Patterns",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 258, "endLine": 374 }
     },
     {
       "question": "How do you organize test code?",
       "answer": "Mirror source structure: src/Calculator.java → test/CalculatorTest.java. Group tests by class under test. Use descriptive test names. Separate unit from integration tests. Keep tests close to what they test.",
       "details": "Folder structure: tests/unit/, tests/integration/. One test class per production class (typically). Test methods grouped by functionality. Helper methods for common operations. Test data separate from test logic. Run unit tests frequently, integration tests less often.",
-      "category": "Test Organization"
+      "category": "Test Organization",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 716, "endLine": 736 }
     },
     {
       "question": "What makes code testable and how do you improve testability?",
       "answer": "Testable code: Uses dependency injection, follows SOLID principles, has small focused methods, avoids static/global state, separates concerns. Improve: Extract dependencies, add interfaces, break up large methods.",
       "details": "Hard to test: new inside methods, static methods, singletons, tight coupling. Solutions: Pass dependencies as parameters, use factories, inject mocks. If code is hard to test, it often indicates design problems. TDD naturally produces testable code.",
-      "category": "Testability"
+      "category": "Testability",
+      "slide_ref": { "file": "slides/wk_9-2_unit_testing.md", "startLine": 668, "endLine": 676 }
     }
   ]
 }

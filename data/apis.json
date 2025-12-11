@@ -5,9 +5,9 @@
   "category": "integration",
   "cards": [
     {
-      "question": "What is an API and what are the main types?",
-      "answer": "API (Application Programming Interface): Contract that defines how software components communicate. Types: Library APIs (in-process), Web APIs (HTTP-based), OS APIs (system calls), Database APIs.",
-      "details": "Web API types: REST (representational state transfer), SOAP (XML-based protocol), GraphQL (query language), gRPC (binary protocol). Modern focus: RESTful web APIs. API defines: Endpoints, request/response formats, authentication, rate limits.",
+      "question": "What is a Web API and what does it enable?",
+      "answer": "A Web API is an interface exposed over HTTP that allows programs to interact with a web service or browser API. It enables programmatic access to services, integration between systems, third-party development, data sharing, and mashups.",
+      "details": "Web APIs provide representations (JSON, XML, HTML) and use HTTP methods for interaction. They are key enablers of mashups and service composition covered in the course.",
       "category": "Fundamentals"
     },
     {
@@ -35,9 +35,9 @@
       "category": "API Design"
     },
     {
-      "question": "What is API versioning and what are the approaches?",
-      "answer": "API versioning maintains backward compatibility when API evolves. Approaches: 1) URL path (/v1/users), 2) Query parameter (?version=1), 3) Header (Accept-Version: v1), 4) Content negotiation (Accept: application/vnd.api.v1+json).",
-      "details": "URL path: Most visible, easy caching, clutters URL. Header: Cleaner URLs, less visible. Support multiple versions during transition. Deprecation strategy: Warn users, set sunset dates, provide migration guides. Breaking changes = new major version.",
+      "question": "Why is API versioning a problem and how can developers mitigate version incompatibility?",
+      "answer": "Version changes can break clients and mashups, because different consumers may rely on different behaviors. Mitigations include using well-documented APIs, monitoring deprecations, abstracting API calls behind adapters, planning version transitions, and implementing fallback behavior.",
+      "details": "Course slides highlight 'Lack of Standards' and 'Version Incompatibility' as key issues and recommend adopting well-documented, stable APIs and designing for graceful migration.",
       "category": "API Design"
     },
     {
@@ -47,46 +47,46 @@
       "category": "Mashups"
     },
     {
-      "question": "What are common API authentication methods?",
-      "answer": "API Key: Simple token in header/query. Basic Auth: Username:password base64 encoded. OAuth 2.0: Token-based, delegated authorization. JWT: Self-contained tokens with claims. API Key simplest, OAuth most flexible.",
-      "details": "API Key: Easy but less secure (often in URLs). Basic Auth: Simple but requires HTTPS. OAuth 2.0: Complex but handles delegation (log in with Google). JWT: Stateless, contains user info, signed. Choose based on: Security needs, client type, use case. Always use HTTPS.",
+      "question": "What security concerns should you consider when integrating external APIs and how can you mitigate them?",
+      "answer": "Security concerns include trust of external sources, data exposure, injection attacks, policy or license changes, and accidental leakage of sensitive data. Mitigations: use well-known/trusted APIs, validate and sanitize inputs, limit data exposure, cache or store only essential info, review API terms, and monitor service health.",
+      "details": "Slides discuss 'Unknown Sources', 'API misunderstanding', 'Data exposure', and 'Injection Attacks' as key concerns and recommend using trusted providers, input validation, regular security audits, and limiting data exposure.",
       "category": "Security"
     },
     {
-      "question": "What is OAuth 2.0 and what problem does it solve?",
-      "answer": "OAuth 2.0: Authorization framework allowing third-party apps to access resources on behalf of user, without sharing credentials. Solves: Delegated access without password sharing.",
-      "details": "Roles: Resource Owner (user), Client (app), Authorization Server, Resource Server. Flows: Authorization Code (web apps), Implicit (SPAs - deprecated), Client Credentials (server-to-server), Password Grant (trusted apps). Access tokens expire, refresh tokens get new access tokens.",
+      "question": "What role do authentication and authorization play in API security?",
+      "answer": "Authentication verifies the identity of a client or user; authorization determines what the authenticated principal is allowed to do. Both are essential: authentication to prevent unauthorized access and authorization to enforce access control rules.",
+      "details": "Slides emphasize 'Security' (authentication and authorization) as critical to protect data and system integrity. Best practices include using HTTPS, enforcing server-side access control, and limiting token exposure.",
       "category": "Security"
     },
     {
-      "question": "What is rate limiting and why is it important?",
-      "answer": "Rate limiting: Restricting number of API requests per time period. Protects: Server resources, prevents abuse, ensures fair usage, manages costs. Typically: X requests per minute/hour/day.",
-      "details": "Implementation: Token bucket, sliding window. Response headers: X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset. Status 429 Too Many Requests. Client handling: Backoff, retry with exponential delay, queue requests. Consider: Different limits per endpoint, per user tier.",
+      "question": "How can you mitigate availability and performance issues when integrating external APIs?",
+      "answer": "Use caching for stable data, implement timeouts and retries with exponential backoff, provide fallbacks or degraded modes, monitor downstream service health, and design APIs to fail gracefully when external dependencies are unavailable.",
+      "details": "Course slides recommend caching, fallbacks, service health monitoring, and abstracting API calls to reduce direct coupling to external providers.",
+      "category": "Resilience"
+    },
+    {
+      "question": "What is the simplest way to embed external content in a page, and what are the trade-offs compared to integrating APIs?",
+      "answer": "Embedding via iframes is simple and quick but limits integration and data exchange between sources. Direct API integration allows composing and transforming data but requires more development and depends on APIs' availability and stability.",
+      "details": "Slides explain iFrame embedding as a straightforward, low-integration approach, versus data aggregation & API integration that requires fetch/transform logic and offers more control.",
+      "category": "Mashups"
+    },
+    {
+      "question": "How do APIs typically signal errors and which HTTP status codes are commonly used?",
+      "answer": "APIs use HTTP status codes (e.g., 400, 401, 403, 404, 500) and often return a JSON body with an error message. Use 200/201 for success, 201 for created, 204 for no content, 400 for bad request, 401 for unauthorized, 403 for forbidden, 404 for not found, and 500 for server errors.",
+      "details": "Slides show JSON-based error responses in examples and cover status codes. Keep responses concise and avoid exposing internal stack traces while providing enough info for debugging.",
       "category": "API Design"
     },
     {
-      "question": "What is CORS and why does it matter for APIs?",
-      "answer": "CORS (Cross-Origin Resource Sharing): Browser security mechanism. By default, browsers block requests to different origins. CORS headers allow servers to specify who can access resources.",
-      "details": "Same-origin policy: Browser prevents cross-origin requests. CORS headers: Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers. Preflight: OPTIONS request for complex requests. Server must explicitly allow cross-origin access. Only affects browser requests.",
-      "category": "Security"
-    },
-    {
-      "question": "What should API error responses include?",
-      "answer": "Error responses should include: HTTP status code, error code (machine-readable), message (human-readable), details (validation errors), and optionally: documentation link, request ID for debugging.",
-      "details": "Example: {\"status\": 400, \"code\": \"VALIDATION_ERROR\", \"message\": \"Invalid input\", \"details\": [{\"field\": \"email\", \"error\": \"Invalid format\"}], \"requestId\": \"abc123\"}. Consistent format across all errors. Don't expose internal details (stack traces). Log details server-side with request ID.",
+      "question": "How can query parameters like 'limit' and 'category' be used to control results in a REST API?",
+      "answer": "Use query parameters to filter and limit results, e.g., /fruits/list?category=fruit&limit=20. Use sensible defaults and caps to prevent huge responses and support sorting/filtering via additional query params.",
+      "details": "Slides show URL examples with query strings for filtering and limiting results. This lightweight approach supports basic pagination and filtering strategies taught in class.",
       "category": "API Design"
     },
     {
-      "question": "What is pagination and how should you implement it?",
-      "answer": "Pagination: Breaking large result sets into pages. Approaches: Offset-based (/users?offset=20&limit=10), Page-based (/users?page=3&pageSize=10), Cursor-based (/users?after=abc123&limit=10).",
-      "details": "Offset: Simple but slow for large offsets (DB scans). Cursor: Better performance, stable during updates. Include in response: Total count, page info, links to next/prev. HATEOAS: Include links in response. Default reasonable page size, cap maximum.",
-      "category": "API Design"
-    },
-    {
-      "question": "What is the difference between REST and GraphQL?",
-      "answer": "REST: Multiple endpoints, server defines data shape, over/under-fetching possible. GraphQL: Single endpoint, client specifies exact data needed, strongly typed schema.",
-      "details": "REST: Simpler, cacheable, established. GraphQL: Flexible queries, reduces round trips, better for complex data needs. GraphQL challenges: Caching harder, query complexity, N+1 queries. Choose REST for simple CRUD, GraphQL for complex data requirements.",
-      "category": "API Styles"
+      "question": "What is HATEOAS and how does it relate to REST?",
+      "answer": "HATEOAS (Hypermedia As The Engine Of Application State) means servers include links in resource representations that indicate available next actions, enabling discoverability and reducing coupling between client and server.",
+      "details": "Slides introduce HATEOAS as a uniform interface constraint of REST where resource representations include transitions (links) to guide client interaction.",
+      "category": "REST"
     },
     {
       "question": "How do you design APIs for reliability and resilience?",
